@@ -1,0 +1,3 @@
+def get_animal_type():
+    #     for animal in self.animals:
+    #         return f"{self.name} farm has {animal} animals."

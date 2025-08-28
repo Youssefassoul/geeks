@@ -1,0 +1,45 @@
+class Farm:
+    def __init__(self, farm_name):
+        self.name = farm_name
+        self.animals = {}
+
+    def add_animal(self, animal_type, count=1):
+        if animal_type in self.animals:
+            self.animals[animal_type] += count
+        else:
+            self.animals[animal_type] = count
+
+    def get_info(self):
+        info = f"{self.name} farm:\n"
+        for animal, count in self.animals.items():
+            info += f" - {animal}: {count}\n"
+        return info
+
+    # Step 6
+    def get_animal_types(self):
+        return sorted(self.animals.keys())
+
+    # Step 7
+    def get_short_info(self):
+        animal_list = self.get_animal_types()  # sorted list
+        # pluralize if count > 1
+        pluralized = [
+            animal + "s" if self.animals[animal] > 1 else animal
+            for animal in animal_list
+        ]
+        if len(pluralized) > 1:
+            animals_str = ", ".join(pluralized[:-1]) + " and " + pluralized[-1]
+        else:
+            animals_str = pluralized[0]
+        return f"{self.name} farm has {animals_str}."
+
+
+macdonald = Farm("McDonald's")
+macdonald.add_animal("cow", 5)
+macdonald.add_animal("sheep")
+macdonald.add_animal("sheep")
+macdonald.add_animal("goat", 12)
+
+print(macdonald.get_info())
+print(macdonald.get_animal_types())
+print(macdonald.get_short_info())

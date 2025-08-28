@@ -1,0 +1,44 @@
+CREATE TABLE actors(
+ actor_id SERIAL PRIMARY KEY,
+ first_name VARCHAR (50) NOT NULL,
+ last_name VARCHAR (100) NOT NULL,
+ age DATE NOT NULL,
+ number_oscars SMALLINT NOT NULL
+)
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES('Matt','Damon','08/10/1970', 5);
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES('George','Clooney','06/05/1961', 2);
+
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES('Meryl','Streep','06/22/1949', 3);
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES('Natalie','Portman','06/09/1981', 1);
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES('Leonardo','DiCaprio','11/11/1974', 1);
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES('Jennifer','Lawrence','08/15/1990', 1);
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES('Denzel','Washington','12/28/1954', 2);
+
+
+SELECT * FROM actors
+
+SELECT COUNT(*) AS total_actors
+FROM actors;
+
+INSERT INTO actors (first_name, last_name, age, number_oscars)
+VALUES ('Tom', 'Holland', NULL, NULL);
+
+-- ERROR:  null value in column "age" of relation "actors" violates not-null constraint
+-- Failing row contains (9, Tom, Holland, null, null). 
+
+-- SQL state: 23502
+-- Detail: Failing row contains (9, Tom, Holland, null, null).
