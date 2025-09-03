@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Create a variable called sentence
+      const sentence = "The movie is not that bad, I like it";
+
+      // Create a variable called wordNot
+      const wordNot = sentence.indexOf("not");
+
+      // Create a variable called wordBad
+      const wordBad = sentence.indexOf("bad");
+
+      // Check if the word "bad" comes after the word "not"
+      if (wordNot !== -1 && wordBad !== -1 && wordBad > wordNot) {
+        // Replace the whole "not...bad" substring with "good"
+        const result =
+          sentence.substring(0, wordNot) +
+          "good" +
+          sentence.substring(wordBad + 3);
+        console.log(`Your string is : '${sentence}'`);
+        console.log(`  --> the result is : '${result}'`);
+      } else {
+        console.log(`Your string is : '${sentence}'`);
+        console.log(`  --> the result is : '${sentence}'`);
+      }
+    </script>
+  </body>
+</html>

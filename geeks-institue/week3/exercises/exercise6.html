@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const details = {
+        my: "name",
+        is: "Rudolf",
+        the: "reindeer",
+      };
+      let sentence = "";
+      for (let key in details) {
+        sentence += key + " " + details[key] + " ";
+      }
+      console.log(sentence.trim());
+    </script>
+  </body>
+</html>
