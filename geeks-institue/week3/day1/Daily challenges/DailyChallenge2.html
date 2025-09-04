@@ -7,13 +7,22 @@
   </head>
   <body>
     <script>
-      for (let i = 1; i <= 6; i++) {
-        let row = "";
-        for (let j = 0; j < i; j++) {
-          row += "* ";
-        }
-        console.log(row);
+      //-- single loop --
+      let pattern = "";
+      let totalStars = 5;
+
+      for (let i = totalStars; i > 0; i--) {
+        pattern += "* ".repeat(i) + "\n";
       }
+      console.log(pattern);
+      //-- double loop --
+      for (let i = totalStars; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+          pattern += "* ";
+        }
+        pattern += "\n";
+      }
+      console.log(pattern);
     </script>
   </body>
 </html>
