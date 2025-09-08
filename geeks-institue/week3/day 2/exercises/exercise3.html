@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function changeEnough(itemPrice, amountOfChange) {
+        const [quarters, dimes, nickels, pennies] = amountOfChange;
+        const total =
+          quarters * 0.25 + dimes * 0.1 + nickels * 0.05 + pennies * 0.01;
+        return total >= itemPrice;
+      }
+
+      // Example usage:
+      console.log(changeEnough(4.25, [25, 20, 5, 0])); // true
+      console.log(changeEnough(14.11, [2, 100, 0, 0])); // false
+      console.log(changeEnough(0.75, [0, 0, 20, 5])); // true
+    </script>
+  </body>
+</html>

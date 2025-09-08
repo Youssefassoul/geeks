@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section id="books"></section>
+
+    <script>
+      // Array of book objects
+      // Your array of books
+      const allBooks = [
+        {
+          title: "The Hobbit",
+          author: "J.R.R. Tolkien",
+          image: "https://m.media-amazon.com/images/I/81t2CVWEsUL.jpg",
+          alreadyRead: true,
+        },
+        {
+          title: "Atomic Habits",
+          author: "James Clear",
+          image: "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg",
+          alreadyRead: false,
+        },
+      ];
+
+      // Select the section
+      const section = document.getElementById("books");
+
+      // Loop through each book
+      allBooks.forEach((book) => {
+        // Create a div for the book
+        const bookDiv = document.createElement("div");
+
+        // Create a paragraph for title + author
+        const bookDetails = document.createElement("p");
+        bookDetails.textContent = `${book.title} written by ${book.author}`;
+
+        // If already read → make text red
+        if (book.alreadyRead) {
+          bookDetails.style.color = "red";
+        }
+
+        // Create the image
+        const bookImg = document.createElement("img");
+        bookImg.src = book.image;
+        bookImg.style.width = "100px";
+
+        // Append details + image to the book div
+        bookDiv.appendChild(bookDetails);
+        bookDiv.appendChild(bookImg);
+
+        // Append book div to the section
+        section.appendChild(bookDiv);
+      });
+    </script>
+  </body>
+</html>

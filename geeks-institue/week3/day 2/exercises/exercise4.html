@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function hotelCost(numberOfNights) {
+        return parseInt(numberOfNights) * 140;
+      }
+      // Example usage:
+      function planeRideCost(planeDestination) {
+        if (planeDestination == "London") {
+          return 183;
+        } else if (planeDestination == "Paris") {
+          return 220;
+        } else {
+          return 300;
+        }
+      }
+
+      function rentalCarCost(rentDays) {
+        let days = parseInt(rentDays);
+        let cost = days * 40;
+        if (days >= 10) {
+          cost = cost * 0.95; // 5% discount
+        }
+        return cost;
+      }
+
+      function totalVacationCost() {
+        let numberOfNights;
+        do {
+          numberOfNights = prompt(
+            "How many nights would you like to stay in the hotel?"
+          );
+        } while (
+          numberOfNights === null ||
+          isNaN(numberOfNights) ||
+          numberOfNights.trim() === ""
+        );
+        const hotel = hotelCost(numberOfNights);
+
+        let planeDestination;
+        do {
+          planeDestination = prompt("What is your destination? ");
+        } while (planeDestination === null || planeDestination.trim() === "");
+        const plane = planeRideCost(planeDestination);
+
+        let rentDays;
+        do {
+          rentDays = prompt("How many days would you like to rent a car?");
+        } while (
+          rentDays === null ||
+          isNaN(rentDays) ||
+          rentDays.trim() === ""
+        );
+        const car = rentalCarCost(rentDays);
+
+        const totalCost = hotel + plane + car;
+        console.log(
+          `The car cost: $${car}, the hotel cost: $${hotel}, the plane tickets cost: $${plane}. The total vacation cost is $${totalCost}.`
+        );
+      }
+      totalVacationCost();
+    </script>
+  </body>
+</html>

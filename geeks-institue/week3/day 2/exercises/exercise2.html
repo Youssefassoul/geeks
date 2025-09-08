@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>[1 tool called]
+
+Okay, let's break down the `myBill()` function in your `exercise2.html` file.
+
+The `myBill()` function calculates the total cost of items in your `shoppingList`, considering their availability in `stock` and their `prices`. It also updates the `stock` by decreasing the quantity of each purchased item.
+
+Here's a detailed explanation:
+
+**1. `stock` Object (Lines 11-17):**
+   - This object stores the current quantity of each item available.
+   - For example, `banana: 6` means there are 6 bananas in stock.
+   - `apple: 0` means there are no apples in stock.
+
+**2. `prices` Object (Lines 18-24):**
+   - This object stores the price of each item.
+   - For example, `banana: 4` means one banana costs 4 units (e.g., dollars, euros).
+
+**3. `shoppingList` Array (Line 27):**
+   - This array contains the names of the items you want to buy.
+   - In this example, you want to buy "banana", "orange", and "apple".
+
+**4. `myBill()` Function (Lines 30-40):**
+
+   - **`let total = 0;` (Line 31):**
+     - Initializes a variable `total` to `0`. This variable will store the running sum of the prices of the items you successfully "purchase".
+
+   - **`shoppingList.forEach((item) => { ... });` (Line 32):**
+     - This is a loop that iterates over each `item` in the `shoppingList` array. For each item, the code inside the curly braces `{}` will be executed.
+
+   - **`if (stock[item] && stock[item] > 0)` (Line 33):**
+     - This is the core condition that determines if an item can be "bought".
+     - **`stock[item]`**: This checks if the `item` exists as a key in the `stock` object. If `stock[item]` is `undefined` (meaning the item is not in stock at all) or `0` (meaning it's in stock but out of quantity), this part will evaluate to `false`.
+     - **`stock[item] > 0`**: This specifically checks if the quantity of the `item` in `stock` is greater than `0`.
+     - The `&&` (AND) operator means both conditions must be true for the code inside the `if` block to run. So, an item is only considered "in stock" if it exists in the `stock` object *and* its quantity is greater than zero.
+
+   - **`total += prices[item];` (Line 34):**
+     - If the `item` is in stock, its price is retrieved from the `prices` object using `prices[item]` and added to the `total`.
+
+   - **`stock[item]--;` (Line 36):**
+     - This is the "bonus" feature. If an item is successfully "purchased" (i.e., it was in stock), its quantity in the `stock` object is decreased by 1. This simulates removing the item from the inventory.
+
+   - **`return total;` (Line 39):**
+     - After iterating through all items in the `shoppingList`, the function returns the final `total` calculated.
+
+**How it works with your example `shoppingList = ["banana", "orange", "apple"]`:**
+
+1.  **"banana"**:
+    *   `stock["banana"]` is `6`, which is `> 0`.
+    *   Condition is true.
+    *   `total` becomes `0 + prices["banana"]` (which is `0 + 4 = 4`).
+    *   `stock["banana"]` becomes `6 - 1 = 5`.
+
+2.  **"orange"**:
+    *   `stock["orange"]` is `32`, which is `> 0`.
+    *   Condition is true.
+    *   `total` becomes `4 + prices["orange"]` (which is `4 + 1.5 = 5.5`).
+    *   `stock["orange"]` becomes `32 - 1 = 31`.
+
+3.  **"apple"**:
+    *   `stock["apple"]` is `0`.
+    *   Condition `stock["apple"] > 0` is false.
+    *   The `if` block is skipped. `total` remains `5.5`. `stock["apple"]` remains `0`.
+
+Finally, `myBill()` returns `5.5`.
+
+**`console.log("Total bill:", myBill());` (Line 43):**
+   - This line calls the `myBill()` function, gets the returned total, and then logs it to the browser's console along with the label "Total bill:".
+
+**`console.log("Updated stock:", stock);` (Line 44):**
+   - This line logs the `stock` object *after* the `myBill()` function has been executed. You will see that the quantities for "banana" and "orange" have decreased by 1, while "apple" remains 0.
+  </head>
+  <body>
+    <script>
+      const stock = {
+        banana: 6,
+        apple: 0,
+        pear: 12,
+        orange: 32,
+        blueberry: 1,
+      };
+      const prices = {
+        banana: 4,
+        apple: 2,
+        pear: 1,
+        orange: 1.5,
+        blueberry: 10,
+      };
+
+      const shoppingList = ["banana", "orange", "apple"];
+
+      function myBill() {
+        let total = 0;
+        shoppingList.forEach((item) => {
+          if (stock[item] && stock[item] > 0) {
+            total += prices[item];
+            // Bonus: decrease stock by 1
+            stock[item]--;
+          }
+        });
+        return total;
+      }
+
+      console.log("Total bill:", myBill());
+      console.log("Updated stock:", stock);
+    </script>
+  </body>
+</html>

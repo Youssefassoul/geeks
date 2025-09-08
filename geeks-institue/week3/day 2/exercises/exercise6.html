@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="navBar">
+      <ul>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">My Friends</a></li>
+        <li><a href="#">Messenger</a></li>
+        <li><a href="#">My Pics</a></li>
+      </ul>
+    </div>
+    <script>
+      // 1. Change the id of the div from "navBar" to "socialNetworkNavigation"
+      const navDiv = document.getElementById("navBar");
+      navDiv.setAttribute("id", "socialNetworkNavigation");
+
+      // 2. Create a new <li> element
+      const newLi = document.createElement("li");
+
+      // 3. Create a text node with "Logout"
+      const logoutText = document.createTextNode("Logout");
+
+      // 4. Append the text node to the <li>
+      newLi.appendChild(logoutText);
+
+      // 5. Append the <li> to the <ul>
+      const ul = navDiv.querySelector("ul");
+      ul.appendChild(newLi);
+      // Get the <ul> inside the div
+      const underList = document.querySelector("#socialNetworkNavigation ul");
+
+      // Use firstElementChild and lastElementChild
+      const firstLi = underList.firstElementChild;
+      const lastLi = underList.lastElementChild;
+
+      // Display the text of each link
+      console.log("First link:", firstLi.textContent);
+      console.log("Last link:", lastLi.textContent);
+    </script>
+  </body>
+</html>

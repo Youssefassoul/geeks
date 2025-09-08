@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">Users:</div>
+    <ul class="list">
+      <li>John</li>
+      <li>Pete</li>
+    </ul>
+    <ul class="list">
+      <li>David</li>
+      <li>Sarah</li>
+      <li>Dan</li>
+    </ul>
+
+    <script>
+      // 1. Retrieve the div and console.log it
+      const container = document.getElementById("container");
+      console.log(container);
+
+      // 2. Change the name “Pete” to “Richard”
+      const firstUl = document.querySelector("ul.list");
+      firstUl.children[1].textContent = "Richard";
+
+      // 3. Delete the second <li> of the second <ul>
+      const secondUl = document.querySelectorAll("ul.list")[1];
+      secondUl.children[1].remove(); // removes "Sarah"
+
+      // 4. Change the name of the first <li> of each <ul> to your name
+      const allUls = document.querySelectorAll("ul.list");
+      allUls.forEach((ul) => {
+        ul.children[0].textContent = "Youssef"; // replace first li
+      });
+
+      // 5. Add a class called student_list to both of the <ul>'s
+      allUls.forEach((ul) => {
+        ul.classList.add("student_list");
+      });
+
+      // 6. Add the classes university and attendance to the first <ul>
+      firstUl.classList.add("university", "attendance");
+
+      // 7. Add a “light blue” background color and some padding to the <div>
+      container.style.backgroundColor = "lightblue";
+      container.style.padding = "10px";
+
+      // 8. Do not display the <li> that contains the text node “Dan”
+      const danLi = Array.from(secondUl.children).find(
+        (li) => li.textContent === "Dan"
+      );
+      if (danLi) {
+        danLi.style.display = "none";
+      }
+
+      // 9. Add a border to the <li> that contains the text node “Richard”
+      const richardLi = Array.from(firstUl.children).find(
+        (li) => li.textContent === "Richard"
+      );
+      if (richardLi) {
+        richardLi.style.border = "2px solid black";
+      }
+
+      // 10. Change the font size of the whole body
+      document.body.style.fontSize = "20px";
+
+      // BONUS: If the background color of the div is light blue, alert “Hello x and y”
+      if (container.style.backgroundColor === "lightblue") {
+        const users = Array.from(document.querySelectorAll("ul.list li"))
+          .map((li) => li.textContent)
+          .join(" and ");
+        alert(`Hello ${users}`);
+      }
+    </script>
+  </body>
+</html>

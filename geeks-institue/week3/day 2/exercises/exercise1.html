@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function displayNumbersDivisible(divisor) {
+        let sum = 0;
+        let outcome = [];
+        for (let i = 0; i <= 500; i++) {
+          if (i % divisor === 0) {
+            outcome.push(i);
+            sum += i;
+          }
+        }
+        console.log("Outcome : " + outcome.join(" "));
+        console.log("Sum : " + sum);
+      }
+      displayNumbersDivisible(23);
+      displayNumbersDivisible(3);
+      displayNumbersDivisible(45);
+    </script>
+  </body>
+</html>
