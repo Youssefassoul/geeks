@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Daily Challenge: Show only letters</title>
+  </head>
+  <body>
+    <h1>Daily Challenge: Show only letters</h1>
+
+    <form>
+      <label for="letters-only">Enter text (letters only):</label><br />
+      <input type="text" id="letters-only" placeholder="Type here..." />
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+      // Question 1: Get reference to the input element
+      const letterInput = document.getElementById("letters-only");
+      const message = document.getElementById("message");
+
+      // Question 2: Add event listener using input event
+      letterInput.addEventListener("input", function (event) {
+        // Question 3: Get the current value
+        let currentValue = event.target.value;
+
+        // Question 4: Remove any character that is not a letter using regular expression
+        let lettersOnly = currentValue.replace(/[^a-zA-Z]/g, "");
+
+        // Question 5: Update the input value to show only letters
+        event.target.value = lettersOnly;
+
+        // Question 6: Show feedback message
+        if (currentValue !== lettersOnly) {
+          message.textContent =
+            "Only letters are allowed! Numbers and special characters were removed.";
+          message.style.color = "red";
+        } else {
+          message.textContent = "Valid input!";
+          message.style.color = "green";
+        }
+      });
+
+      // Alternative solution using keypress event (commented out)
+      /*
+      letterInput.addEventListener('keypress', function(event) {
+        // Question 7: Check if the pressed key is not a letter
+        const charCode = event.charCode;
+        if (!((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))) {
+          // Question 8: Prevent the character from being entered
+          event.preventDefault();
+        }
+      });
+      */
+
+      // Alternative solution using keydown event (commented out)
+      /*
+      letterInput.addEventListener('keydown', function(event) {
+        // Question 9: Check if the pressed key is not a letter
+        const keyCode = event.keyCode;
+        if (!((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || keyCode === 8 || keyCode === 46)) {
+          // Question 10: Prevent the character from being entered (allow backspace and delete)
+          event.preventDefault();
+        }
+      });
+      */
+    </script>
+  </body>
+</html>

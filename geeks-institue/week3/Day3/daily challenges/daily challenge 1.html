@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Challenge: Mad Libs</title>
+  </head>
+  <body>
+    <h1>Mad Libs</h1>
+
+    <form id="libform">
+      <label for="noun">Noun:</label><input type="text" id="noun" /><br />
+      <label for="adjective">Adjective:</label
+      ><input type="text" id="adjective" /><br />
+      <label for="person">Someone's Name:</label
+      ><input type="text" id="person" /><br />
+      <label for="verb">Verb:</label><input type="text" id="verb" /><br />
+      <label for="place">A place:</label><input type="text" id="place" /><br />
+      <button id="lib-button">Lib it!</button>
+    </form>
+
+    <p>
+      Generated story:
+      <span id="story"></span>
+    </p>
+
+    <script>
+      // Question 1: Get references to the form elements
+      const libForm = document.getElementById("libform");
+      const libButton = document.getElementById("lib-button");
+      const storySpan = document.getElementById("story");
+
+      // Question 2: Add event listener to the button
+      libButton.addEventListener("click", function (event) {
+        // Question 3: Prevent form submission
+        event.preventDefault();
+
+        // Question 4: Get values from the form inputs
+        const noun = document.getElementById("noun").value;
+        const adjective = document.getElementById("adjective").value;
+        const person = document.getElementById("person").value;
+        const verb = document.getElementById("verb").value;
+        const place = document.getElementById("place").value;
+
+        // Question 5: Check if all fields are filled
+        if (noun && adjective && person && verb && place) {
+          // Question 6: Create the mad lib story
+          const story = `Once upon a time, there was a ${adjective} ${noun} named ${person}. ${person} loved to ${verb} in ${place}. One day, while ${person} was ${verb}ing in ${place}, they discovered a magical ${noun} that could ${verb} on its own! The end.`;
+
+          // Question 7: Display the story
+          storySpan.textContent = story;
+        } else {
+          // Question 8: Show error message if not all fields are filled
+          storySpan.textContent =
+            "Please fill in all fields to generate your story!";
+          storySpan.style.color = "red";
+        }
+      });
+
+      // Question 9: Add event listener to clear error message when user starts typing
+      const inputs = document.querySelectorAll('input[type="text"]');
+      inputs.forEach((input) => {
+        input.addEventListener("input", function () {
+          if (storySpan.style.color === "red") {
+            storySpan.style.color = "black";
+            storySpan.textContent = "";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

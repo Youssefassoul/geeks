@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" name="firstname" /><br />
+      <label for="lname">Last name:</label><br />
+      <input type="text" id="lname" name="lastname" /><br /><br />
+      <input type="submit" value="Submit" id="submit" />
+    </form>
+    <ul class="usersAnswer"></ul>
+
+    <script>
+      // const myForm = document.getElementsByTagName("form");
+      // console.log(myForm);
+      // const submitButton = document.getElementById("submit");
+
+      // const myFirstInput = document.getElementById("fname");
+      // const mySecondInput = document.getElementById("lname");
+      // console.log(myFirstInput);
+      // console.log(mySecondInput);
+
+      // const firstName = document.getElementsByName("firstname");
+      // const lastName = document.getElementsByName("lastname");
+
+      // console.log(firstName);
+      // console.log(lastName);
+      let myForm = document.getElementsByTagName("form")[0];
+      let ul = document.querySelector(".usersAnswer");
+
+      myForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let firstNameInput = document.getElementById("fname");
+        let lastNameInput = document.getElementById("lname");
+
+        const firstNameValue = firstNameInput.value.trim();
+        const lastNameValue = lastNameInput.value.trim();
+
+        if (firstNameValue === "" || lastNameValue === "") {
+          alert("Ensure you input a value in both fields!");
+        } else {
+          const liFirstName = document.createElement("li");
+          liFirstName.textContent = `First Name: ${firstNameValue}`;
+          ul.appendChild(liFirstName);
+
+          const liLastName = document.createElement("li");
+          liLastName.textContent = `Last Name: ${lastNameValue}`;
+          ul.appendChild(liLastName);
+
+          firstNameInput.value = "";
+          lastNameInput.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>exercise 1</title>
+  </head>
+  <body>
+    <article>
+      <h1>Some Facts</h1>
+      <h2>The Chocolate</h2>
+      <h3>History of the chocolate</h3>
+      <p>
+        Chocolate is made from tropical Theobroma cacao tree seeds. Its earliest
+        use dates back to the Olmec civilization in Mesoamerica.
+      </p>
+      <p>
+        After the European discovery of the Americas, chocolate became very
+        popular in the wider world, and its demand exploded.
+      </p>
+      <p>
+        Chocolate has since become a popular food product that millions enjoy
+        every day, thanks to its unique, rich, and sweet taste.
+      </p>
+      <p>But what effect does eating chocolate have on our health?</p>
+    </article>
+    <button
+      id="my-Btn"
+      class="h-10 w-20 border rounded-xs border-black-800 pointer"
+    >
+      bold
+    </button>
+    <script>
+      let firstHeader = document.getElementsByTagName("h1")[0];
+      console.log(firstHeader.innerHTML);
+
+      let container = document.getElementsByTagName("div");
+      let lastParagraph = document.getElementsByTagName("p")[3];
+      if (lastParagraph) {
+        lastParagraph.remove();
+      }
+      let secondHeader = document.getElementsByTagName("h2")[0];
+      secondHeader.addEventListener("click", changeColor);
+
+      function changeColor(event) {
+        secondHeader.style.backgroundColor = "red";
+      }
+
+      let thirdHeader = document.getElementsByTagName("h3")[0];
+      thirdHeader.addEventListener("click", hide);
+
+      function hide(event) {
+        thirdHeader.style.display = "none";
+      }
+
+      let myBtn = document.getElementById("my-Btn");
+      let paragraphs = document.querySelectorAll("p");
+      myBtn.addEventListener("click", () => {
+        paragraphs.forEach((paragraph) => {
+          paragraph.style.fontWeight = "bold";
+        });
+      });
+      firstHeader.addEventListener("mouseover", function () {
+        const randomSize = Math.floor(Math.random() * 101);
+        firstHeader.style.fontSize = randomSize + "px";
+      });
+
+      firstHeader.addEventListener("mouseout", function () {
+        firstHeader.style.fontSize = "";
+      });
+      secondHeader.addEventListener("mouseover", function () {
+        secondHeader.style.opacity = "0";
+        secondHeader.style.transition = "opacity 0.8s ease-in-out";
+      });
+    </script>
+  </body>
+</html>
