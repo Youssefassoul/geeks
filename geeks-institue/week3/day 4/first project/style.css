@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #fada61 0%, #ff5acd 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#sidebar {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  height: 100vh;
+  width: 18%;
+  float: left;
+  background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+  padding: 15px;
+  border-radius: 0 15px 15px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#main {
+  display: grid;
+  grid-template-columns: repeat(60, 1fr);
+  height: 100vh;
+  padding: 15px 15px 15px 25px;
+  background: white;
+  border-radius: 15px 0 0 15px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  margin-left: 2%;
+}
+
+#sidebar > * {
+  border: 2px solid #34495e;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#sidebar > *:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#main > * {
+  border: 0.5px solid #e0e0e0;
+  background-color: white;
+  transition: background-color 0.1s ease;
+}
+
+#main > *:hover {
+  border: 1px solid #bbb;
+}
+
+button {
+  grid-column: 1/4;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 8px 0;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
