@@ -1,74 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise XP Gold 2 - Week 4 Day 2</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Exercise 2: Analyzing the reduce method</h1>
     <p>Week 4 - Day 2 - Exercise XP Gold</p>
-    
+
     <script>
-        console.log("=== Exercise 2: Analyzing the reduce method ===");
-        
-        // First, let's analyze what we expect
-        console.log("\n--- Code Analysis ---");
-        console.log("Code to analyze:");
-        console.log(`[[0, 1], [2, 3]].reduce(
-  (acc, cur) => {
-    return acc.concat(cur);
-  },
-  [1, 2],
-);`);
-        
-        console.log("\n--- Step by Step Analysis ---");
-        console.log("Initial accumulator: [1, 2]");
-        console.log("Array to process: [[0, 1], [2, 3]]");
-        console.log("");
-        console.log("Step 1:");
-        console.log("- acc: [1, 2] (initial value)");
-        console.log("- cur: [0, 1] (first element)");
-        console.log("- acc.concat(cur): [1, 2].concat([0, 1]) = [1, 2, 0, 1]");
-        console.log("");
-        console.log("Step 2:");
-        console.log("- acc: [1, 2, 0, 1] (result from step 1)");
-        console.log("- cur: [2, 3] (second element)");
-        console.log("- acc.concat(cur): [1, 2, 0, 1].concat([2, 3]) = [1, 2, 0, 1, 2, 3]");
-        
-        console.log("\n--- Prediction ---");
-        console.log("Expected output: [1, 2, 0, 1, 2, 3]");
-        
-        // Now let's run the actual code
-        console.log("\n--- Actual Result ---");
-        const result = [[0, 1], [2, 3]].reduce(
-            (acc, cur) => {
-                console.log(`acc: [${acc}], cur: [${cur}]`);
-                const newAcc = acc.concat(cur);
-                console.log(`result: [${newAcc}]`);
-                return newAcc;
-            },
-            [1, 2]
-        );
-        
-        console.log("Final result:", result);
-        
-        // Let's compare with other methods
-        console.log("\n--- Comparison with Other Methods ---");
-        
-        // Using flat() method (ES2019)
-        const flatResult = [1, 2, [0, 1], [2, 3]].flat();
-        console.log("Using flat():", flatResult);
-        
-        // Using spread operator
-        const spreadResult = [1, 2, ...[0, 1], ...[2, 3]];
-        console.log("Using spread:", spreadResult);
-        
-        console.log("\n--- Key Learning Points ---");
-        console.log("- reduce() processes elements sequentially");
-        console.log("- Initial value [1, 2] becomes the starting accumulator");
-        console.log("- concat() creates a new array by combining arrays");
-        console.log("- This is a common pattern for flattening nested arrays");
+      [
+        [0, 1],
+        [2, 3],
+      ].reduce(
+        (acc, cur) => {
+          return acc.concat(cur);
+        },
+        [1, 2]
+      );
+      //Initial accumulator is [1, 2], then is concatenated → [1, 2, 0, 1], then → [1, 2, 0, 1, 2, 3].
     </script>
-</body>
+  </body>
 </html>

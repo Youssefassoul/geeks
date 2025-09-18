@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise XP 6 - Week 4 Day 3</title>
+  </head>
+  <body>
+    <h1>Exercise XP 6</h1>
+    <p>Week 4 - Day 3</p>
+
+    <script>
+      // Exercise 6: Challenges - Solutions
+
+      // Part 1: Evaluate these (True or False)
+      console.log("=== Part 1: Array and Object Equality ===");
+      // [2] === [2]
+      console.log("[2] === [2]:", false);
+      // Result: false
+      // {} === {}
+      console.log("{} === {}:", false);
+      // Result: false
+
+      // Explanation:
+      // Arrays and objects are reference types. Even if they have the same content, they are different objects in memory.
+
+      console.log("\n=== Part 2: Object Reference and Mutation ===");
+      // Part 2: Object reference code and explanation
+      const object1 = { number: 5 };
+      const object2 = object1;
+      const object3 = object2;
+      const object4 = { number: 5 };
+
+      object1.number = 4;
+
+      console.log("object2.number:", object2.number); // 4
+      console.log("object3.number:", object3.number); // 4
+      console.log("object4.number:", object4.number); // 5
+
+      // Explanation:
+      // object2.number = 4 because object2 references the same object as object1
+      // object3.number = 4 because object3 references the same object as object1 (through object2)
+      // object4.number = 5 because object4 is a separate object with its own memory location
+
+      console.log("\n=== Part 3: Animal Class ===");
+      // Part 3: Create Animal class
+      class Animal {
+        constructor(name, type, color) {
+          this.name = name;
+          this.type = type;
+          this.color = color;
+        }
+      }
+
+      console.log("\n=== Part 4: Mammal Class (extends Animal) ===");
+      // Part 4: Create Mammal class that extends Animal
+      class Mammal extends Animal {
+        constructor(name, type, color) {
+          super(name, type, color);
+        }
+        sound(animalSound) {
+          return `${animalSound} I'm a ${this.type}, named ${this.name} and I'm ${this.color}`;
+        }
+      }
+
+      console.log("\n=== Part 5: FarmerCow Instance ===");
+      // Part 5: Create farmerCow object and use sound method
+      const farmerCow = new Mammal("Lily", "cow", "brown and white");
+      const cowSound = farmerCow.sound("Moooo");
+      console.log(cowSound); // Output: Moooo I'm a cow, named Lily and I'm brown and white
+      console.log("\n=== Exercise XP 6 Completed ===");
+    </script>
+  </body>
+</html>

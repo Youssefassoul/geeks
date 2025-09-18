@@ -1,122 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise XP Ninja 1 - Week 4 Day 2</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Exercise 1: Dog age to Human years</h1>
     <p>Week 4 - Day 2 - Exercise XP Ninja</p>
-    
+
     <script>
-        console.log("=== Exercise 1: Dog age to Human years ===");
-        
-        // Data provided
-        const data = [
-            {
-                name: 'Butters',
-                age: 3,
-                type: 'dog'
-            },
-            {
-                name: 'Cuty',
-                age: 5,
-                type: 'rabbit'
-            },
-            {
-                name: 'Lizzy',
-                age: 6,
-                type: 'dog'
-            },
-            {
-                name: 'Red',
-                age: 1,
-                type: 'cat'
-            },
-            {
-                name: 'Joey',
-                age: 3,
-                type: 'dog'
-            },
-            {
-                name: 'Rex',
-                age: 10,
-                type: 'dog'
-            },
-        ];
-        
-        console.log("Original data:", data);
-        
-        // First, let's identify all the dogs
-        const dogs = data.filter(animal => animal.type === 'dog');
-        console.log("\nDogs in the array:", dogs);
-        
-        // Method 1: Using a loop to find sum of dogs' ages in human years
-        console.log("\n--- Method 1: Using Loop ---");
-        let totalHumanYearsLoop = 0;
-        
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].type === 'dog') {
-                const humanAge = data[i].age * 7;
-                console.log(`${data[i].name} (dog): ${data[i].age} years = ${humanAge} human years`);
-                totalHumanYearsLoop += humanAge;
-            }
+      const data = [
+        { name: "Butters", age: 3, type: "dog" },
+        { name: "Cuty", age: 5, type: "rabbit" },
+        { name: "Lizzy", age: 6, type: "dog" },
+        { name: "Red", age: 1, type: "cat" },
+        { name: "Joey", age: 3, type: "dog" },
+        { name: "Rex", age: 10, type: "dog" },
+      ];
+
+      let sum = 0;
+      for (const animal of data) {
+        if (animal.type === "dog") {
+          sum += animal.age * 7;
         }
-        
-        console.log(`Total dog ages in human years (loop): ${totalHumanYearsLoop} years`);
-        
-        // Alternative loop method using for...of
-        console.log("\n--- Alternative Loop Method (for...of) ---");
-        let totalHumanYearsForOf = 0;
-        
-        for (const animal of data) {
-            if (animal.type === 'dog') {
-                const humanAge = animal.age * 7;
-                console.log(`${animal.name}: ${animal.age} dog years = ${humanAge} human years`);
-                totalHumanYearsForOf += humanAge;
-            }
-        }
-        
-        console.log(`Total dog ages in human years (for...of): ${totalHumanYearsForOf} years`);
-        
-        // Method 2: Using reduce() method
-        console.log("\n--- Method 2: Using reduce() ---");
-        const totalHumanYearsReduce = data.reduce((total, animal) => {
-            if (animal.type === 'dog') {
-                const humanAge = animal.age * 7;
-                console.log(`${animal.name}: ${animal.age} dog years = ${humanAge} human years`);
-                return total + humanAge;
-            }
-            return total;
-        }, 0);
-        
-        console.log(`Total dog ages in human years (reduce): ${totalHumanYearsReduce} years`);
-        
-        // Method 3: Combining filter() and reduce() for cleaner code
-        console.log("\n--- Method 3: Filter + Reduce (Clean Approach) ---");
-        const totalHumanYearsClean = data
-            .filter(animal => animal.type === 'dog')
-            .reduce((total, dog) => {
-                const humanAge = dog.age * 7;
-                console.log(`${dog.name}: ${dog.age} dog years = ${humanAge} human years`);
-                return total + humanAge;
-            }, 0);
-        
-        console.log(`Total dog ages in human years (filter+reduce): ${totalHumanYearsClean} years`);
-        
-        // Summary statistics
-        console.log("\n=== Summary Statistics ===");
-        const totalAnimals = data.length;
-        const dogCount = dogs.length;
-        const averageDogAge = dogs.reduce((sum, dog) => sum + dog.age, 0) / dogCount;
-        const averageHumanAge = totalHumanYearsClean / dogCount;
-        
-        console.log(`Total animals: ${totalAnimals}`);
-        console.log(`Total dogs: ${dogCount}`);
-        console.log(`Average dog age: ${averageDogAge.toFixed(1)} dog years`);
-        console.log(`Average human equivalent: ${averageHumanAge.toFixed(1)} human years`);
-        console.log(`Total combined dog age in human years: ${totalHumanYearsClean} years`);
+      }
+      console.log(sum); // Output: 154
+      const dogYears = data.reduce((acc, animal) => {
+        return animal.type === "dog" ? acc + animal.age * 7 : acc;
+      }, 0);
+      console.log(dogYears); // Output: 154
     </script>
-</body>
+  </body>
 </html>

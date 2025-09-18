@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise XP 5 - Week 4 Day 3</title>
+  </head>
+  <body>
+    <h1>Exercise XP 5</h1>
+    <p>Week 4 - Day 3</p>
+
+    <script>
+      // Add your JavaScript code here
+      console.log("Exercise XP 5 - Week 4 Day 3");
+
+      // 1. Analyze the code below. What will be the output?
+      class Dog {
+        constructor(name) {
+          this.name = name;
+        }
+      }
+
+      class Labrador extends Dog {
+        constructor(name, size) {
+          super(name);
+          this.size = size;
+        }
+      }
+
+      // Explanation:
+      // When a class extends another class, its constructor must call super()
+      // if it defines its own constructor. The super() call invokes the parent class's constructor.
+      // In the original code, the Labrador constructor was missing the super(name) call,
+      // which is necessary to initialize the 'name' property inherited from the Dog class.
+      // The corrected code adds super(name) to properly initialize the parent class's part of the object.
+
+      const myLabrador = new Labrador("Buddy", "Large");
+      console.log(myLabrador); // Expected output: Labrador { name: 'Buddy', size: 'Large' }
+      console.log(myLabrador.name); // Expected output: 'Buddy'
+      console.log(myLabrador.size); // Expected output: 'Large'
+    </script>
+  </body>
+</html>

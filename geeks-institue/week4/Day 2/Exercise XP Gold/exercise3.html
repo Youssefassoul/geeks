@@ -1,79 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise XP Gold 3 - Week 4 Day 2</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Exercise 3: Analyze this code</h1>
     <p>Week 4 - Day 2 - Exercise XP Gold</p>
-    
+
     <script>
-        console.log("=== Exercise 3: Analyze this code ===");
-        
-        // First, let's analyze what we expect
-        console.log("\n--- Code Analysis ---");
-        console.log("Code to analyze:");
-        console.log(`const arrayNum = [1, 2, 4, 5, 8, 9];
-const newArray = arrayNum.map((num, i) => {
-    console.log(num, i);
-    alert(num);
-    return num * 2;
-})`);
-        
-        console.log("\n--- What is the value of 'i'? ---");
-        console.log("Answer: 'i' represents the INDEX of each element in the array");
-        console.log("\nDetailed explanation:");
-        console.log("- The map() method passes two parameters to the callback function:");
-        console.log("  1. 'num' - the current element value");
-        console.log("  2. 'i' - the current element index (position)");
-        console.log("\n- For array [1, 2, 4, 5, 8, 9]:");
-        console.log("  Element 1 has index 0");
-        console.log("  Element 2 has index 1");
-        console.log("  Element 4 has index 2");
-        console.log("  Element 5 has index 3");
-        console.log("  Element 8 has index 4");
-        console.log("  Element 9 has index 5");
-        
-        // Let's demonstrate this without the alert (to avoid popup spam)
-        console.log("\n--- Demonstration (without alert) ---");
-        const arrayNum = [1, 2, 4, 5, 8, 9];
-        const newArray = arrayNum.map((num, i) => {
-            console.log(`Element: ${num}, Index: ${i}`);
-            // alert(num); // Commented out to avoid popup spam
-            return num * 2;
-        });
-        
-        console.log("\nOriginal array:", arrayNum);
-        console.log("New array (doubled):", newArray);
-        
-        // Additional examples to show how index works
-        console.log("\n--- Additional Examples ---");
-        
-        const fruits = ['apple', 'banana', 'cherry'];
-        console.log("\nExample with strings:");
-        fruits.map((fruit, index) => {
-            console.log(`Index ${index}: ${fruit}`);
-            return fruit.toUpperCase();
-        });
-        
-        console.log("\n--- Map Method Parameters ---");
-        console.log("The map() callback function can receive up to 3 parameters:");
-        console.log("1. element - current element being processed");
-        console.log("2. index - index of current element");
-        console.log("3. array - the array being processed");
-        
-        const demo = [10, 20, 30];
-        demo.map((element, index, array) => {
-            console.log(`Element: ${element}, Index: ${index}, Full array: [${array}]`);
-            return element;
-        });
-        
-        console.log("\n--- Summary ---");
-        console.log("'i' is the INDEX parameter in the map() method");
-        console.log("It starts at 0 and increments by 1 for each element");
-        console.log("It represents the position of each element in the array");
+      const arrayNum = [1, 2, 4, 5, 8, 9];
+      const newArray = arrayNum.map((num, i) => {
+        console.log(num, i);
+        alert(num);
+        return num * 2;
+      });
+
+      // "i" represents the index of each element in the arrayNum (from 0 to 5).
     </script>
-</body>
+  </body>
 </html>

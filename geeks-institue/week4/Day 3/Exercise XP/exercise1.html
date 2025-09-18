@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise XP 1 - Week 4 Day 3</title>
+  </head>
+  <body>
+    <h1>Exercise 1: Destructuring</h1>
+    <p>Week 4 - Day 3</p>
+
+    <script>
+      const person = {
+        name: "John Doe",
+        age: 25,
+        location: {
+          country: "Canada",
+          city: "Vancouver",
+          coordinates: [49.2827, -123.1207],
+        },
+      };
+
+      const {
+        name,
+        location: {
+          country,
+          city,
+          coordinates: [lat, lng],
+        },
+      } = person;
+
+      console.log(
+        `I am ${name} from ${city}, ${country}. Latitude(${lat}), Longitude(${lng})`
+      );
+    </script>
+  </body>
+</html>

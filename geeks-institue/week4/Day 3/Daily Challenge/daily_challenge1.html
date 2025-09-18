@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Challenge 1 - Week 4 Day 3</title>
+  </head>
+  <body>
+    <h1>Daily Challenge 1</h1>
+    <p>Week 4 - Day 3</p>
+
+    <script>
+      class Video {
+        constructor(title, uploader, time) {
+          this.title = title;
+          this.uploader = uploader;
+          this.time = time;
+        }
+        watch() {
+          return `${this.uploader} watched all ${this.time} of ${this.title}!`;
+        }
+      }
+      const video1 = new Video(
+        "JavaScript Crash Course",
+        "Alice",
+        "15 minutes"
+      );
+      console.log(video1.watch());
+      // Output: Alice watched all 15 minutes of JavaScript Crash Course!
+
+      const video2 = new Video("Python Basics", "Bob", "10 minutes");
+      console.log(video2.watch());
+      // Output: Bob watched all 10 minutes of Python Basics!
+      const videosData = [
+        { title: "Introduction to HTML", uploader: "Sami", time: "8 minutes" },
+        { title: "CSS Flexbox Guide", uploader: "Leila", time: "12 minutes" },
+        { title: "React Starter", uploader: "Fatima", time: "20 minutes" },
+        { title: "Node.js Setup", uploader: "Omar", time: "9 minutes" },
+        { title: "Debugging in Chrome", uploader: "Sara", time: "7 minutes" },
+      ];
+
+      const videoInstances = [];
+
+      for (const data of videosData) {
+        const video = new Video(data.title, data.uploader, data.time);
+        videoInstances.push(video);
+        console.log(video.watch());
+      }
+    </script>
+  </body>
+</html>

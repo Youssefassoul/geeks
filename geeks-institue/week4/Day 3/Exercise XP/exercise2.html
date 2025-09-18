@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise XP 2 - Week 4 Day 3</title>
+  </head>
+  <body>
+    <h1>Exercise 2: Destructuring Function</h1>
+    <p>Week 4 - Day 3</p>
+
+    <script>
+      console.log("=== Exercise 2: Destructuring Function ===");
+
+      function displayStudentInfo(objUser) {
+        const { first, last } = objUser;
+        return `Your full name is ${first} ${last}`;
+      }
+
+      const studentName = displayStudentInfo({
+        first: "Elie",
+        last: "Schoppik",
+      });
+      console.log(studentName); // Expected output: 'Your full name is Elie Schoppik'
+
+      console.log("\n--- Additional Tests ---");
+      const student2 = { first: "John", last: "Doe" };
+      console.log(displayStudentInfo(student2)); // Expected output: 'Your full name is John Doe'
+
+      const student3 = { first: "Alice", last: "Smith", age: 30 }; // Extra properties don't affect destructuring
+      console.log(displayStudentInfo(student3)); // Expected output: 'Your full name is Alice Smith'
+
+      console.log("\n=== Destructuring Function Features ===");
+      console.log(
+        "✅ Function parameter destructuring used for 'first' and 'last' properties"
+      );
+      console.log("✅ Returns a formatted string with the full name");
+      console.log(
+        "✅ Demonstrates clean extraction of properties from an object passed as an argument"
+      );
+    </script>
+  </body>
+</html>
