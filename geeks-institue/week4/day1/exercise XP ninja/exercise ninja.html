@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Merge Words</title>
+  </head>
+  <body>
+    <script>
+      // Currying function for merging words
+      const mergeWords = (string) => (nextString) => {
+        if (nextString === undefined) {
+          return string;
+        } else {
+          return mergeWords(string + " " + nextString);
+        }
+      };
+
+      // Examples:
+      console.log(mergeWords("Hello")()); // Expected: 'Hello'
+      console.log(mergeWords("There")("is")("no")("spoon.")()); // Expected: 'There is no spoon.'
+    </script>
+  </body>
+</html>

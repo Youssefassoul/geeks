@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const landscape = () => {
+        const flat = (size) => "_".repeat(size);
+        const mountain = (size) => "/" + "'".repeat(size) + "\\";
+
+        const result = flat(4) + mountain(4) + flat(4);
+
+        return result;
+      };
+
+      // To see the result, you should log it to the console.
+      console.log(landscape());
+      // Expected output: "____/''''\\"
+    </script>
+  </body>
+</html>

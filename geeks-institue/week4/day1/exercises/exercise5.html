@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Function Declaration
+      function kgToGramsDeclaration(kg) {
+        return kg * 1000;
+      }
+      // Invoking the function declaration
+      console.log(
+        "Using declaration:",
+        `5kg is ${kgToGramsDeclaration(5)} grams.`
+      );
+
+      // 2. Function Expression
+      const kgToGramsExpression = function (kg) {
+        return kg * 1000;
+      };
+      // Invoking the function expression
+      console.log(
+        "Using expression:",
+        `12kg is ${kgToGramsExpression(12)} grams.`
+      );
+
+      // 3. Difference: Function declarations are hoisted (can be called before they are defined), while function expressions are not.
+
+      // 4. One-line Arrow Function
+      const kgToGramsArrow = (kg) => kg * 1000;
+      // Invoking the arrow function
+      console.log(
+        "Using arrow function:",
+        `2.5kg is ${kgToGramsArrow(2.5)} grams.`
+      );
+    </script>
+  </body>
+</html>

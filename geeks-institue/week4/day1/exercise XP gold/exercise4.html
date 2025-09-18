@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const curriedSum = (a) => (b) => a + b;
+      const add5 = curriedSum(5);
+
+      // The expression add5(12) will evaluate to 17.
+      // Let's log it to the console to see the result.
+      console.log(add5(12));
+    </script>
+  </body>
+</html>

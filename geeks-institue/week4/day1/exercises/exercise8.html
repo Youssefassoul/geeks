@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="output"></div>
+    <script>
+      function makeJuice(size) {
+        const ingredients = [];
+        function addIngredients(ing1, ing2, ing3) {
+          ingredients.push(ing1, ing2, ing3);
+          const sentence = `The client wants a ${size} juice, containing ${ingredients.join(
+            ", "
+          )}.`;
+          document.getElementById("output").innerText = sentence;
+        }
+        addIngredients("apple", "banana", "strawberry");
+        function displayJuice() {
+          const sentence = `The client wants a ${size} juice, containing ${ingredients.join(
+            ", "
+          )}.`;
+          document.getElementById("output").innerText = sentence;
+        }
+        addIngredients("orange", "mango", "pineapple");
+        displayJuice();
+      }
+      makeJuice("large");
+    </script>
+  </body>
+</html>

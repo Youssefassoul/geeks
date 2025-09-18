@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const compose = (f, g) => (a) => f(g(a));
+      const add1 = (num) => num + 1;
+      const add5 = (num) => num + 5;
+
+      // The expression will evaluate to 16 (add5(10) -> 15, then add1(15) -> 16).
+      // Let's log it to the console to see the result.
+      console.log(compose(add1, add5)(10));
+    </script>
+  </body>
+</html>

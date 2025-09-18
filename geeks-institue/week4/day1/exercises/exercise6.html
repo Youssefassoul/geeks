@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Person {
+        constructor(childNumber, partnerName, geography, job) {
+          this.childNumber = childNumber;
+          this.partnerName = partnerName;
+          this.geography = geography;
+          this.job = job;
+        }
+        tellFortune() {
+          document.body.innerHTML = ""; // clear the body before appending the new fortune
+          document.body.innerHTML += `<p>You will be a ${this.job} in ${this.geography}, and married to ${this.partnerName} with ${this.childNumber} kids.</p>`;
+        }
+      }
+
+      const childNumber = prompt("Enter number of children:");
+      const partnerName = prompt("Enter partner's name:");
+      const geography = prompt("Enter geography:");
+      const job = prompt("Enter job:");
+      const person = new Person(childNumber, partnerName, geography, job);
+      console.log(person);
+      person.tellFortune(); // call the tellFortune method on the person object
+
+      // Use dot notation to access the properties of the person object
+      console.log(
+        `You will be a ${person.job} in ${person.geography}, and married to ${person.partnerName} with ${person.childNumber} kids.`
+      );
+    </script>
+  </body>
+</html>

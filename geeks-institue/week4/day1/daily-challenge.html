@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Challenge: Pass by Value vs. Reference</title>
+  </head>
+  <body>
+    <script>
+      let client = "John";
+
+      const groceries = {
+        fruits: ["pear", "apple", "banana"],
+        vegetables: ["tomatoes", "cucumber", "salad"],
+        totalPrice: "20$",
+        other: {
+          paid: true,
+          meansOfPayment: ["cash", "creditCard"],
+        },
+      };
+
+      // 1. Create an arrow function named displayGroceries
+      const displayGroceries = () => {
+        console.log("--- Displaying Fruits ---");
+        groceries.fruits.forEach((fruit) => {
+          console.log(fruit);
+        });
+      };
+
+      // Call the function to see the output
+      displayGroceries();
+
+      // 2. Create another arrow function named cloneGroceries.
+      const cloneGroceries = () => {
+        console.log("\n--- Cloning and Modifying ---");
+
+        // 3. Create a copy of the client variable
+        let user = client;
+        console.log(`Initial user: ${user}`); // "John"
+
+        // 4. Change the client variable
+        client = "Betty";
+
+        // Will we also see this modification in the user variable?
+        // No, because 'client' is a primitive (string), its value was copied (Pass by Value).
+        // 'user' and 'client' are independent.
+        console.log(`Original client is now: ${client}`); // "Betty"
+        console.log(`Copied user is still: ${user}`); // "John"
+
+        // 5. Create a variable named shopping that is equal to the groceries variable.
+        let shopping = groceries;
+
+        // 6. Change the value of the totalPrice key to 35$.
+        groceries.totalPrice = "35$";
+        // Will we see this modification in the shopping object? Yes.
+        // 'shopping' and 'groceries' point to the same object in memory (Pass by Reference).
+        console.log(`Shopping total price: ${shopping.totalPrice}`); // "35$"
+
+        // 7. Change the value of the paid key to false.
+        groceries.other.paid = false;
+        // Will we see this modification in the shopping object? Yes, for the same reason.
+        console.log(`Is shopping paid? ${shopping.other.paid}`); // false
+      };
+
+      // 8. Invoke the cloneGroceries function.
+      cloneGroceries();
+    </script>
+  </body>
+</html>

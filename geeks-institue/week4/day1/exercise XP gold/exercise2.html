@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currying Example</title>
+  </head>
+  <body>
+    <script>
+      const addTo = (x) => (y) => x + y;
+      const addToTen = addTo(10);
+      const result = addToTen(3);
+      console.log(result);
+      // This will output 13 to the browser's console.
+    </script>
+  </body>
+</html>
