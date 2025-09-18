@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Inventory Management - Bonus Exercise</title>
+  </head>
+  <body>
+    <h1>🚗 Car Inventory Management - Bonus Exercise</h1>
+    <p>Week 4 - Day 2</p>
+
+    <script>
+      console.log("=== Car Inventory Management - Bonus Exercise ===");
+
+      // Car inventory data
+      const inventory = [
+        { id: 1, car_make: "Lincoln", car_model: "Navigator", car_year: 2009 },
+        { id: 2, car_make: "Mazda", car_model: "Miata MX-5", car_year: 2001 },
+        { id: 3, car_make: "Honda", car_model: "Accord", car_year: 1983 },
+        {
+          id: 4,
+          car_make: "Land Rover",
+          car_model: "Defender Ice Edition",
+          car_year: 2010,
+        },
+        { id: 5, car_make: "Honda", car_model: "Accord", car_year: 1995 },
+      ];
+
+      console.log("Original inventory:");
+      console.log(inventory);
+
+      // ============ PART I ============
+      console.log("\n=== PART I: Find Honda Car ===");
+
+      /**
+       * Function to get the first Honda car from inventory
+       * @param {Array} carInventory - Array of car objects
+       * @returns {string} - Formatted string with car details
+       */
+      function getCarHonda(carInventory) {
+        console.log("Searching for Honda in inventory...");
+
+        // Using find() method - returns the first element that passes the test
+        const hondaCar = carInventory.find((car) => {
+          console.log(
+            `Checking: ${car.car_make} ${car.car_model} (${car.car_year})`
+          );
+          return car.car_make === "Honda";
+        });
+
+        if (hondaCar) {
+          const result = `This is a ${hondaCar.car_make} ${hondaCar.car_model} from ${hondaCar.car_year}.`;
+          console.log(`✅ Found Honda: ${result}`);
+          return result;
+        } else {
+          console.log("❌ No Honda found in inventory");
+          return "No Honda car found in inventory.";
+        }
+      }
+
+      // Test the function
+      console.log("\n--- Testing getCarHonda() ---");
+      const hondaResult = getCarHonda(inventory);
+      console.log("Function result:", hondaResult);
+
+      // ============ PART II ============
+      console.log("\n=== PART II: Sort by Year ===");
+
+      /**
+       * Function to sort car inventory by year (ascending)
+       * @param {Array} carInventory - Array of car objects
+       * @returns {Array} - Sorted array of car objects
+       */
+      function sortCarInventoryByYear(carInventory) {
+        console.log("Sorting inventory by year (ascending)...");
+
+        // Using sort() method with custom comparison function
+        // For ascending order: if a.car_year < b.car_year, return negative number
+        const sortedInventory = [...carInventory].sort((a, b) => {
+          console.log(`Comparing ${a.car_year} vs ${b.car_year}`);
+          return a.car_year - b.car_year;
+        });
+
+        return sortedInventory;
+      }
+
+      // Test the function
+      console.log("\n--- Testing sortCarInventoryByYear() ---");
+      const sortedCars = sortCarInventoryByYear(inventory);
+
+      console.log("\nSorted inventory (by year, ascending):");
+      console.log(sortedCars);
+
+      // Verify the sorting
+      console.log("\n--- Verification ---");
+      console.log("Expected order by year: 1983, 1995, 2001, 2009, 2010");
+      console.log("Actual order:");
+      sortedCars.forEach((car, index) => {
+        console.log(
+          `${index + 1}. ${car.car_year} - ${car.car_make} ${car.car_model}`
+        );
+      });
+
+      // ============ BONUS FEATURES ============
+      console.log("\n=== BONUS: Additional Car Inventory Functions ===");
+
+      // Bonus 1: Get all Honda cars (not just the first one)
+      function getAllHondaCars(carInventory) {
+        return carInventory.filter((car) => car.car_make === "Honda");
+      }
+
+      console.log("\n--- Bonus 1: All Honda Cars ---");
+      const allHondas = getAllHondaCars(inventory);
+      console.log("All Honda cars in inventory:");
+      allHondas.forEach((car) => {
+        console.log(
+          `- ${car.car_make} ${car.car_model} (${car.car_year}) - ID: ${car.id}`
+        );
+      });
+
+      // Bonus 2: Sort by multiple criteria (year, then make, then model)
+      function sortCarInventoryMultiple(carInventory) {
+        return [...carInventory].sort((a, b) => {
+          // First sort by year
+          if (a.car_year !== b.car_year) {
+            return a.car_year - b.car_year;
+          }
+          // If years are equal, sort by make
+          if (a.car_make !== b.car_make) {
+            return a.car_make.localeCompare(b.car_make);
+          }
+          // If makes are equal, sort by model
+          return a.car_model.localeCompare(b.car_model);
+        });
+      }
+
+      console.log("\n--- Bonus 2: Multi-criteria Sort ---");
+      const multiSorted = sortCarInventoryMultiple(inventory);
+      console.log("Sorted by year → make → model:");
+      multiSorted.forEach((car) => {
+        console.log(`${car.car_year} ${car.car_make} ${car.car_model}`);
+      });
+
+      // Bonus 3: Get car statistics
+      function getCarStatistics(carInventory) {
+        const years = carInventory.map((car) => car.car_year);
+        const makes = carInventory.map((car) => car.car_make);
+
+        return {
+          totalCars: carInventory.length,
+          oldestYear: Math.min(...years),
+          newestYear: Math.max(...years),
+          averageYear: (
+            years.reduce((sum, year) => sum + year, 0) / years.length
+          ).toFixed(1),
+          uniqueMakes: [...new Set(makes)],
+          makeCount: makes.reduce((counts, make) => {
+            counts[make] = (counts[make] || 0) + 1;
+            return counts;
+          }, {}),
+        };
+      }
+
+      console.log("\n--- Bonus 3: Car Statistics ---");
+      const stats = getCarStatistics(inventory);
+      console.log("📊 Inventory Statistics:");
+      console.log(`   Total Cars: ${stats.totalCars}`);
+      console.log(`   Year Range: ${stats.oldestYear} - ${stats.newestYear}`);
+      console.log(`   Average Year: ${stats.averageYear}`);
+      console.log(`   Unique Makes: ${stats.uniqueMakes.join(", ")}`);
+      console.log("   Make Distribution:");
+      Object.entries(stats.makeCount).forEach(([make, count]) => {
+        console.log(`     ${make}: ${count} car${count > 1 ? "s" : ""}`);
+      });
+
+      // Bonus 4: Search functionality
+      function searchCars(carInventory, searchTerm) {
+        const term = searchTerm.toLowerCase();
+        return carInventory.filter(
+          (car) =>
+            car.car_make.toLowerCase().includes(term) ||
+            car.car_model.toLowerCase().includes(term) ||
+            car.car_year.toString().includes(term)
+        );
+      }
+
+      console.log("\n--- Bonus 4: Search Functionality ---");
+      const searchTests = ["honda", "accord", "2001", "land"];
+
+      searchTests.forEach((term) => {
+        const results = searchCars(inventory, term);
+        console.log(
+          `Search for "${term}": ${results.length} result${
+            results.length !== 1 ? "s" : ""
+          }`
+        );
+        results.forEach((car) => {
+          console.log(
+            `   - ${car.car_make} ${car.car_model} (${car.car_year})`
+          );
+        });
+      });
+
+      // ============ FINAL SUMMARY ============
+      console.log("\n=== FINAL SUMMARY ===");
+      console.log("✅ Part I: getCarHonda() function implemented");
+      console.log(`   Result: "${hondaResult}"`);
+      console.log("✅ Part II: sortCarInventoryByYear() function implemented");
+      console.log("   Sorted inventory by year (ascending order)");
+      console.log("✅ Bonus features added:");
+      console.log("   - Get all Honda cars");
+      console.log("   - Multi-criteria sorting");
+      console.log("   - Inventory statistics");
+      console.log("   - Search functionality");
+
+      console.log("\n🎯 Key Array Methods Used:");
+      console.log("   - find() - for finding first matching element");
+      console.log("   - sort() - for sorting arrays");
+      console.log("   - filter() - for filtering elements");
+      console.log("   - map() - for transforming arrays");
+      console.log("   - reduce() - for aggregating data");
+
+      console.log("\n🚗 Final Results:");
+      console.log("Honda car:", hondaResult);
+      console.log("Sorted inventory:", sortedCars);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP Gold 4 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>Exercise 4: Nested arrays</h1>
+    <p>Week 4 - Day 2 - Exercise XP Gold</p>
+    
+    <script>
+        console.log("=== Exercise 4: Nested arrays ===");
+        
+        // Challenge 1: Flatten nested array
+        console.log("\n--- Challenge 1: Flatten to [1,2,3,[4],[5]] ---");
+        const array = [[1],[2],[3],[[[4]]],[[[5]]]];
+        console.log("Original array:", array);
+        
+        // Method 1: Using map() with conditional ternary
+        const method1 = array.map(item => {
+            // Check if the item contains a double-nested array
+            return Array.isArray(item[0]) && Array.isArray(item[0][0]) ? item[0] : item[0];
+        });
+        console.log("Method 1 (map with ternary):", method1);
+        
+        // Method 2: Using map() with destructuring
+        const method2 = array.map(item => {
+            if (Array.isArray(item[0]) && Array.isArray(item[0][0])) {
+                return item[0]; // Keep the nested structure for [4] and [5]
+            } else {
+                return item[0]; // Unwrap the single level nesting for 1, 2, 3
+            }
+        });
+        console.log("Method 2 (map with if):", method2);
+        
+        // Bonus: One-liner solution using flatMap and map
+        const oneLineSolution = array.flatMap(item => {
+            return Array.isArray(item[0]) && Array.isArray(item[0][0]) ? [item[0]] : item[0];
+        });
+        console.log("Bonus one-liner:", oneLineSolution);
+        
+        
+        // Challenge 2: Join strings in nested arrays
+        console.log("\n--- Challenge 2: Join strings in nested arrays ---");
+        const greeting = [["Hello", "young", "grasshopper!"], ["you", "are"], ["learning", "fast!"]];
+        console.log("Original greeting:", greeting);
+        
+        // Method 1: Using map() and join
+        const flatGreeting = greeting.map(item => item.join(" "));
+        console.log("Method 1 (map and join):", flatGreeting);
+        
+        // Challenge 3: Turn greeting array into string
+        console.log("\n--- Challenge 3: Turn greeting into one string ---");
+        
+        // Using the result from Challenge 2 and joining again
+        const greetingString = flatGreeting.join(" ");
+        console.log("Method 1 (sequential):", greetingString);
+        
+        // One-liner solution: flatten and join in one step
+        const greetingOneStep = greeting.map(item => item.join(" ")).join(" ");
+        console.log("Method 2 (chained):", greetingOneStep);
+        
+        // Challenge 4: Extract the trapped number
+        console.log("\n--- Challenge 4: Extract the trapped number ---");
+        const trapped = [[[[[[[[[[[[[[[[[[[[[[[[[[3]]]]]]]]]]]]]]]]]]]]]]]]]];
+        console.log("Original trapped array (abbreviated):", "[[[[...3...]]]]");
+        
+        // Method 1: Using recursive flattening
+        const flattenDeep = (arr) => {
+            return arr.reduce((acc, val) => 
+                Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
+        };
+        const freedNumber = flattenDeep(trapped);
+        console.log("Method 1 (recursive flattening):", freedNumber);
+        
+        // Method 2: Using flat with Infinity depth
+        const freedNumberFlat = trapped.flat(Infinity);
+        console.log("Method 2 (flat with Infinity):", freedNumberFlat);
+        
+        // One-liner toString hack (not recommended for general use but works here)
+        const hackSolution = [+trapped.toString()];
+        console.log("Hack solution (toString):", hackSolution);
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP Ninja 3 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>Exercise 3: Employees #3</h1>
+    <p>Week 4 - Day 2 - Exercise XP Ninja</p>
+    
+    <script>
+        console.log("=== Exercise 3: Employees #3 ===");
+        
+        // Original users array
+        const users = [
+            { firstName: 'Bradley', lastName: 'Bouley', role: 'Full Stack Resident' },
+            { firstName: 'Chloe', lastName: 'Alnaji', role: 'Full Stack Resident' },
+            { firstName: 'Jonathan', lastName: 'Baughn', role: 'Enterprise Instructor' },
+            { firstName: 'Michael', lastName: 'Herman', role: 'Lead Instructor' },
+            { firstName: 'Robert', lastName: 'Hajek', role: 'Full Stack Resident' },
+            { firstName: 'Wes', lastName: 'Reid', role: 'Instructor'},
+            { firstName: 'Zach', lastName: 'Klabunde', role: 'Instructor'}
+        ];
+        
+        console.log("Original users array:");
+        console.log(users);
+        
+        // Step 1: Create an empty object (as hinted)
+        console.log("\n--- Method 1: Using for loop with empty object ---");
+        console.log("Step 1: Create an empty object");
+        let usersObject1 = {};
+        console.log("Empty object created:", usersObject1);
+        
+        console.log("\nStep 2: Populate the object using for loop");
+        for (let i = 0; i < users.length; i++) {
+            const fullName = `${users[i].firstName} ${users[i].lastName}`;
+            const role = users[i].role;
+            usersObject1[fullName] = role;
+            console.log(`Added: '${fullName}': '${role}'`);
+        }
+        
+        console.log("\nFinal result (Method 1):");
+        console.log(usersObject1);
+        
+        // Method 2: Using for...of loop
+        console.log("\n--- Method 2: Using for...of loop ---");
+        let usersObject2 = {};
+        
+        for (const user of users) {
+            const fullName = `${user.firstName} ${user.lastName}`;
+            usersObject2[fullName] = user.role;
+        }
+        
+        console.log("Result (Method 2):");
+        console.log(usersObject2);
+        
+        // Method 3: Using forEach()
+        console.log("\n--- Method 3: Using forEach() ---");
+        let usersObject3 = {};
+        
+        users.forEach(user => {
+            const fullName = `${user.firstName} ${user.lastName}`;
+            usersObject3[fullName] = user.role;
+        });
+        
+        console.log("Result (Method 3):");
+        console.log(usersObject3);
+        
+        // Method 4: Using reduce() (most functional approach)
+        console.log("\n--- Method 4: Using reduce() (Functional Approach) ---");
+        const usersObject4 = users.reduce((acc, user) => {
+            const fullName = `${user.firstName} ${user.lastName}`;
+            acc[fullName] = user.role;
+            return acc;
+        }, {});
+        
+        console.log("Result (Method 4):");
+        console.log(usersObject4);
+        
+        // Method 5: Using Object.fromEntries() with map() (ES2019)
+        console.log("\n--- Method 5: Using Object.fromEntries() + map() ---");
+        const usersObject5 = Object.fromEntries(
+            users.map(user => [
+                `${user.firstName} ${user.lastName}`,
+                user.role
+            ])
+        );
+        
+        console.log("Result (Method 5):");
+        console.log(usersObject5);
+        
+        // Verification - Check if all methods produce the same result
+        console.log("\n--- Verification ---");
+        const allMethodsEqual = (
+            JSON.stringify(usersObject1) === JSON.stringify(usersObject2) &&
+            JSON.stringify(usersObject2) === JSON.stringify(usersObject3) &&
+            JSON.stringify(usersObject3) === JSON.stringify(usersObject4) &&
+            JSON.stringify(usersObject4) === JSON.stringify(usersObject5)
+        );
+        
+        console.log("All methods produce the same result:", allMethodsEqual);
+        
+        // Additional analysis
+        console.log("\n--- Additional Analysis ---");
+        const roles = Object.values(usersObject1);
+        const uniqueRoles = [...new Set(roles)];
+        
+        console.log("All full names:", Object.keys(usersObject1));
+        console.log("All roles:", roles);
+        console.log("Unique roles:", uniqueRoles);
+        console.log(`Total employees: ${Object.keys(usersObject1).length}`);
+        
+        // Group by role
+        console.log("\n--- Employees Grouped by Role ---");
+        uniqueRoles.forEach(role => {
+            const employeesInRole = Object.keys(usersObject1).filter(name => usersObject1[name] === role);
+            console.log(`${role}: ${employeesInRole.join(', ')}`);
+        });
+        
+        console.log("\n=== FINAL ANSWER ===");
+        console.log("Target structure: { 'Bradley Bouley': 'Full Stack Resident' }");
+        console.log("✅ Successfully transformed array to object with full names as keys and roles as values!");
+    </script>
+</body>
+</html>

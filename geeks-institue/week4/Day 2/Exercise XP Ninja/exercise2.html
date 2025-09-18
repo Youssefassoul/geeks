@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP Ninja 2 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>Exercise 2: Email</h1>
+    <p>Week 4 - Day 2 - Exercise XP Ninja</p>
+    
+    <script>
+        console.log("=== Exercise 2: Email Cleanup ===");
+        
+        // Original email with whitespaces
+        const userEmail3 = ' cannotfillemailformcorrectly@gmail.com ';
+        
+        console.log("Original email:");
+        console.log(`'${userEmail3}'`);
+        console.log(`Length: ${userEmail3.length} characters`);
+        
+        // Method 1: Using trim() - Single line solution
+        console.log("\n--- Method 1: Using trim() (Single Line) ---");
+        const cleanEmail1 = userEmail3.trim();
+        console.log(`Cleaned email: '${cleanEmail1}'`);
+        console.log(`Length: ${cleanEmail1.length} characters`);
+        
+        // Method 2: Using replace with regex to remove ALL whitespaces
+        console.log("\n--- Method 2: Using replace() with regex ---");
+        const cleanEmail2 = userEmail3.replace(/\s/g, '');
+        console.log(`Cleaned email: '${cleanEmail2}'`);
+        console.log(`Length: ${cleanEmail2.length} characters`);
+        
+        // Method 3: Using split and join to remove all spaces
+        console.log("\n--- Method 3: Using split() and join() ---");
+        const cleanEmail3 = userEmail3.split(' ').join('');
+        console.log(`Cleaned email: '${cleanEmail3}'`);
+        console.log(`Length: ${cleanEmail3.length} characters`);
+        
+        // Let's test with different types of whitespace
+        console.log("\n--- Testing with Different Whitespace Types ---");
+        const testEmails = [
+            ' normalspaces@gmail.com ',
+            '\ttabs@gmail.com\t',
+            '\nnewlines@gmail.com\n',
+            ' \t\n mixed@gmail.com \n\t ',
+            '  multiple   spaces@gmail.com  '
+        ];
+        
+        testEmails.forEach((email, index) => {
+            console.log(`\nTest ${index + 1}:`);
+            console.log(`Original: '${email.replace(/\n/g, '\\n').replace(/\t/g, '\\t')}'`);
+            console.log(`trim(): '${email.trim()}'`);
+            console.log(`replace(/\\s/g, ''): '${email.replace(/\s/g, '')}'`);
+        });
+        
+        // Practical email validation example
+        console.log("\n--- Practical Email Validation ---");
+        function cleanAndValidateEmail(email) {
+            // Clean the email
+            const cleaned = email.trim().toLowerCase();
+            
+            // Basic email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            return {
+                original: email,
+                cleaned: cleaned,
+                isValid: emailRegex.test(cleaned)
+            };
+        }
+        
+        const validationResult = cleanAndValidateEmail(userEmail3);
+        console.log("Validation result:", validationResult);
+        
+        // Final answer - Single line solution
+        console.log("\n=== FINAL ANSWER (Single Line Solution) ===");
+        console.log("const cleanEmail = userEmail3.trim();");
+        console.log(`Result: '${userEmail3.trim()}'`);
+        
+        console.log("\n--- Alternative Single Line Solutions ---");
+        console.log(`trim(): '${userEmail3.trim()}'`);
+        console.log(`replace(): '${userEmail3.replace(/\s/g, '')}'`);
+        console.log(`split+join: '${userEmail3.split(' ').join('')}'`);
+    </script>
+</body>
+</html>

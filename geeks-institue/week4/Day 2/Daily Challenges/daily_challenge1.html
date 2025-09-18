@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Challenge 1 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>Daily Challenge 1: Game Info Processing</h1>
+    <p>Week 4 - Day 2</p>
+    
+    <script>
+        console.log("=== Daily Challenge 1: Game Info Processing ===");
+        
+        // Original gameInfo array
+        const gameInfo = [
+            {
+                username: "john",
+                team: "red",
+                score: 5,
+                items: ["ball", "book", "pen"]
+            },
+            {
+                username: "becky",
+                team: "blue",
+                score: 10,
+                items: ["tape", "backpack", "pen"]
+            },
+            {
+                username: "susy",
+                team: "red",
+                score: 55,
+                items: ["ball", "eraser", "pen"]
+            },
+            {
+                username: "tyson",
+                team: "green",
+                score: 1,
+                items: ["book", "pen"]
+            }
+        ];
+        
+        console.log("Original gameInfo array:");
+        console.log(gameInfo);
+        
+        // Challenge 1: Create array with all usernames + exclamation point using forEach
+        console.log("\n=== Challenge 1: Usernames with Exclamation Points ===");
+        console.log("Target: [\"john!\", \"becky!\", \"susy!\", \"tyson!\"]");
+        
+        const usernames = [];
+        gameInfo.forEach(player => {
+            const usernameWithExclamation = player.username + "!";
+            usernames.push(usernameWithExclamation);
+            console.log(`Processing ${player.username} -> ${usernameWithExclamation}`);
+        });
+        
+        console.log("\nResult (usernames):", usernames);
+        
+        // Alternative approach (more concise)
+        console.log("\n--- Alternative Approach (Concise) ---");
+        const usernamesAlt = [];
+        gameInfo.forEach(player => usernamesAlt.push(player.username + "!"));
+        console.log("Alternative result:", usernamesAlt);
+        
+        // Challenge 2: Create array with usernames of players with score > 5 using forEach
+        console.log("\n=== Challenge 2: Winners (Score > 5) ===");
+        console.log("Target: [\"becky\", \"susy\"]");
+        
+        const winners = [];
+        gameInfo.forEach(player => {
+            console.log(`Checking ${player.username}: score ${player.score}`);
+            if (player.score > 5) {
+                winners.push(player.username);
+                console.log(`✅ ${player.username} qualifies (score: ${player.score})`);
+            } else {
+                console.log(`❌ ${player.username} doesn't qualify (score: ${player.score})`);
+            }
+        });
+        
+        console.log("\nResult (winners):", winners);
+        
+        // Challenge 3: Find and display total score
+        console.log("\n=== Challenge 3: Total Score Calculation ===");
+        console.log("Hint: Total should be 71");
+        
+        let totalScore = 0;
+        gameInfo.forEach(player => {
+            console.log(`Adding ${player.username}'s score: ${player.score}`);
+            totalScore += player.score;
+            console.log(`Running total: ${totalScore}`);
+        });
+        
+        console.log(`\n🎯 Total Score: ${totalScore}`);
+        
+        // Verification of the hint
+        const expectedTotal = 71;
+        const isCorrect = totalScore === expectedTotal;
+        console.log(`Expected: ${expectedTotal}, Got: ${totalScore}, Correct: ${isCorrect ? '✅' : '❌'}`);
+        
+        // Additional Analysis
+        console.log("\n=== Additional Analysis ===");
+        
+        // Team analysis
+        const teams = {};
+        gameInfo.forEach(player => {
+            if (!teams[player.team]) {
+                teams[player.team] = {
+                    players: [],
+                    totalScore: 0,
+                    averageScore: 0
+                };
+            }
+            teams[player.team].players.push(player.username);
+            teams[player.team].totalScore += player.score;
+        });
+        
+        // Calculate average scores for each team
+        Object.keys(teams).forEach(team => {
+            teams[team].averageScore = (teams[team].totalScore / teams[team].players.length).toFixed(1);
+        });
+        
+        console.log("\nTeam Analysis:");
+        Object.keys(teams).forEach(team => {
+            console.log(`${team.toUpperCase()} team:`);
+            console.log(`  Players: ${teams[team].players.join(', ')}`);
+            console.log(`  Total Score: ${teams[team].totalScore}`);
+            console.log(`  Average Score: ${teams[team].averageScore}`);
+        });
+        
+        // Item analysis
+        console.log("\n=== Item Analysis ===");
+        const allItems = [];
+        gameInfo.forEach(player => {
+            allItems.push(...player.items);
+        });
+        
+        const itemCounts = {};
+        allItems.forEach(item => {
+            itemCounts[item] = (itemCounts[item] || 0) + 1;
+        });
+        
+        console.log("Item popularity:");
+        Object.keys(itemCounts)
+            .sort((a, b) => itemCounts[b] - itemCounts[a])
+            .forEach(item => {
+                console.log(`  ${item}: ${itemCounts[item]} players`);
+            });
+        
+        // Summary
+        console.log("\n=== SUMMARY ===");
+        console.log(`✅ Challenge 1: Created usernames array with ${usernames.length} items`);
+        console.log(`✅ Challenge 2: Found ${winners.length} winners with score > 5`);
+        console.log(`✅ Challenge 3: Calculated total score of ${totalScore} (matches hint: ${isCorrect})`);
+        
+        console.log("\n🏆 Final Results:");
+        console.log("usernames:", usernames);
+        console.log("winners:", winners);
+        console.log("totalScore:", totalScore);
+    </script>
+</body>
+</html>

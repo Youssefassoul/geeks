@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP 3 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>Exercise 3: Analyzing</h1>
+    <p>Week 4 - Day 2</p>
+    
+    <script>
+        console.log("=== Exercise 3: Code Analysis ===");
+        
+        // ------1------
+        console.log("\n--- Code Analysis 1 ---");
+        console.log("Predicting: ['bread', 'carrot', 'potato', 'chicken', 'apple', 'orange']");
+        
+        const fruits = ["apple", "orange"];
+        const vegetables = ["carrot", "potato"];
+        const result = ['bread', ...vegetables, 'chicken', ...fruits];
+        console.log("Actual result:", result);
+        
+        // ------2------
+        console.log("\n--- Code Analysis 2 ---");
+        console.log("Predicting: ['U', 'S', 'A']");
+        
+        const country = "USA";
+        console.log("Actual result:", [...country]);
+        
+        // ------Bonus------
+        console.log("\n--- Bonus Analysis ---");
+        console.log("Predicting: [undefined, undefined]");
+        console.log("Explanation: The array [,,] has 2 empty slots, spread operator converts them to undefined");
+        
+        let newArray = [...[,,]];
+        console.log("Actual result:", newArray);
+        console.log("Array length:", newArray.length);
+        
+        // Additional explanations
+        console.log("\n=== Explanations ===");
+        console.log("1. Spread operator (...) expands array elements into individual elements");
+        console.log("2. String spread converts each character into separate array elements");
+        console.log("3. Empty array slots become undefined when spread");
+    </script>
+</body>
+</html>

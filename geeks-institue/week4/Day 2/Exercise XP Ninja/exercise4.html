@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP Ninja 4 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>Exercise 4: Array to Object</h1>
+    <p>Week 4 - Day 2 - Exercise XP Ninja</p>
+    
+    <script>
+        console.log("=== Exercise 4: Array to Object ===");
+        
+        // Original array
+        const letters = ['x', 'y', 'z', 'z'];
+        
+        console.log("Original array:", letters);
+        console.log("Target output: { x: 1, y: 1, z: 2 }");
+        
+        // Method 1: Using for loop
+        console.log("\n--- Method 1: Using for loop ---");
+        let letterCount1 = {};
+        
+        console.log("Step by step process:");
+        for (let i = 0; i < letters.length; i++) {
+            const letter = letters[i];
+            
+            if (letterCount1[letter]) {
+                letterCount1[letter]++;
+                console.log(`'${letter}' already exists, incrementing: ${letterCount1[letter]}`);
+            } else {
+                letterCount1[letter] = 1;
+                console.log(`'${letter}' is new, setting to: 1`);
+            }
+        }
+        
+        console.log("Final result (for loop):", letterCount1);
+        
+        // Alternative for loop approach using logical OR
+        console.log("\n--- Alternative for loop (using || operator) ---");
+        let letterCount1b = {};
+        
+        for (let i = 0; i < letters.length; i++) {
+            const letter = letters[i];
+            letterCount1b[letter] = (letterCount1b[letter] || 0) + 1;
+            console.log(`Processing '${letter}': count is now ${letterCount1b[letter]}`);
+        }
+        
+        console.log("Result (alternative for loop):", letterCount1b);
+        
+        // Method 2: Using reduce()
+        console.log("\n--- Method 2: Using reduce() ---");
+        const letterCount2 = letters.reduce((acc, letter) => {
+            console.log(`Processing '${letter}', current accumulator:`, acc);
+            
+            if (acc[letter]) {
+                acc[letter]++;
+            } else {
+                acc[letter] = 1;
+            }
+            
+            console.log(`After processing '${letter}':`, acc);
+            return acc;
+        }, {});
+        
+        console.log("Final result (reduce):", letterCount2);
+        
+        // Alternative reduce approach (more concise)
+        console.log("\n--- Alternative reduce (concise version) ---");
+        const letterCount2b = letters.reduce((acc, letter) => {
+            acc[letter] = (acc[letter] || 0) + 1;
+            return acc;
+        }, {});
+        
+        console.log("Result (concise reduce):", letterCount2b);
+        
+        // Method 3: Using forEach()
+        console.log("\n--- Method 3: Using forEach() ---");
+        let letterCount3 = {};
+        
+        letters.forEach(letter => {
+            letterCount3[letter] = (letterCount3[letter] || 0) + 1;
+        });
+        
+        console.log("Result (forEach):", letterCount3);
+        
+        // Method 4: Using Map object (alternative approach)
+        console.log("\n--- Method 4: Using Map object ---");
+        const letterMap = new Map();
+        
+        for (const letter of letters) {
+            letterMap.set(letter, (letterMap.get(letter) || 0) + 1);
+        }
+        
+        // Convert Map back to regular object
+        const letterCount4 = Object.fromEntries(letterMap);
+        console.log("Result (Map converted to object):", letterCount4);
+        
+        // Verification - Check if all methods produce the same result
+        console.log("\n--- Verification ---");
+        const allResultsEqual = (
+            JSON.stringify(letterCount1) === JSON.stringify(letterCount2) &&
+            JSON.stringify(letterCount2) === JSON.stringify(letterCount3) &&
+            JSON.stringify(letterCount3) === JSON.stringify(letterCount4)
+        );
+        
+        console.log("All methods produce the same result:", allResultsEqual);
+        
+        // Additional examples with different arrays
+        console.log("\n--- Testing with Different Arrays ---");
+        
+        const testArrays = [
+            ['a', 'b', 'c', 'a', 'b', 'a'],
+            [1, 2, 3, 1, 2, 1, 1],
+            ['hello', 'world', 'hello', 'javascript', 'world']
+        ];
+        
+        testArrays.forEach((testArray, index) => {
+            console.log(`\nTest ${index + 1}: [${testArray.join(', ')}]`);
+            
+            // Using reduce for the test
+            const result = testArray.reduce((acc, item) => {
+                acc[item] = (acc[item] || 0) + 1;
+                return acc;
+            }, {});
+            
+            console.log("Result:", result);
+        });
+        
+        console.log("\n=== SUMMARY ===");
+        console.log("✅ Successfully converted array to object counting occurrences!");
+        console.log("📊 Multiple approaches demonstrated:");
+        console.log("   1. for loop with conditional");
+        console.log("   2. reduce() method");
+        console.log("   3. forEach() method");
+        console.log("   4. Map object approach");
+        
+        console.log("\n🎯 Final Answer:");
+        console.log(`Input: [${letters.join(', ')}]`);
+        console.log("Output:", letterCount1);
+    </script>
+</body>
+</html>

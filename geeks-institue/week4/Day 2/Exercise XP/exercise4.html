@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP 4 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>🌟 Exercise 4: Employees</h1>
+    <p>Week 4 - Day 2</p>
+    
+    <script>
+        // Users array
+        const users = [
+            { firstName: 'Bradley', lastName: 'Bouley', role: 'Full Stack Resident' },
+            { firstName: 'Chloe', lastName: 'Alnaji', role: 'Full Stack Resident' },
+            { firstName: 'Jonathan', lastName: 'Baughn', role: 'Enterprise Instructor' },
+            { firstName: 'Michael', lastName: 'Herman', role: 'Lead Instructor' },
+            { firstName: 'Robert', lastName: 'Hajek', role: 'Full Stack Resident' },
+            { firstName: 'Wes', lastName: 'Reid', role: 'Instructor'},
+            { firstName: 'Zach', lastName: 'Klabunde', role: 'Instructor'}
+        ];
+        
+        // 1. Using map() to create welcome messages
+        console.log("=== 1. Welcome Messages using map() ===");
+        const welcomeStudents = users.map(user => `Hello ${user.firstName}`);
+        console.log(welcomeStudents);
+        
+        // 2. Using filter() to get only Full Stack Residents
+        console.log("\n=== 2. Full Stack Residents using filter() ===");
+        const fullStackResidents = users.filter(user => user.role === 'Full Stack Resident');
+        console.log(fullStackResidents);
+        
+        // 3. Bonus: Chain filter() with map() to get only lastNames of Full Stack Residents
+        console.log("\n=== 3. Bonus: LastNames of Full Stack Residents (filter + map) ===");
+        const fullStackLastNames = users
+            .filter(user => user.role === 'Full Stack Resident')
+            .map(user => user.lastName);
+        console.log(fullStackLastNames);
+        
+        // Additional: Display the results more clearly
+        console.log("\n=== Additional Information ===");
+        console.log(`Total users: ${users.length}`);
+        console.log(`Full Stack Residents: ${fullStackResidents.length}`);
+        console.log(`Full Stack Residents lastNames: ${fullStackLastNames.join(', ')}`);
+    </script>
+</body>
+</html>

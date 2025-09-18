@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP 5 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>🌟 Exercise 5: Star Wars</h1>
+    <p>Week 4 - Day 2</p>
+    
+    <script>
+        // Star Wars array
+        const epic = ['a', 'long', 'time', 'ago', 'in a', 'galaxy', 'far far', 'away'];
+        
+        console.log("=== Star Wars Opening ===");
+        console.log("Original array:", epic);
+        
+        // Using reduce() to combine all elements into a single string
+        const epicString = epic.reduce((accumulator, currentValue) => {
+            return accumulator + ' ' + currentValue;
+        });
+        
+        console.log("\n=== Using reduce() ===");
+        console.log("Combined string:", epicString);
+        
+        // Alternative: More concise version with arrow function
+        const epicStringConcise = epic.reduce((acc, curr) => acc + ' ' + curr);
+        console.log("Concise version:", epicStringConcise);
+        
+        // Alternative: Using reduce with initial value
+        const epicStringWithInitial = epic.reduce((acc, curr, index) => {
+            return index === 0 ? curr : acc + ' ' + curr;
+        }, '');
+        console.log("With proper spacing:", epicStringWithInitial);
+        
+        // Comparison with join() method
+        console.log("\n=== Comparison with join() method ===");
+        const epicWithJoin = epic.join(' ');
+        console.log("Using join():", epicWithJoin);
+        
+        // Final formatted result
+        console.log("\n=== Final Result ===");
+        console.log(`"${epicStringWithInitial.charAt(0).toUpperCase() + epicStringWithInitial.slice(1)}..."`); 
+    </script>
+</body>
+</html>

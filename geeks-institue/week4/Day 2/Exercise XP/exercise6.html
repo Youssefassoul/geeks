@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP 6 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>🌟 Exercise 6: Employees #2</h1>
+    <p>Week 4 - Day 2</p>
+    
+    <script>
+        // Students array
+        const students = [
+            {name: "Ray", course: "Computer Science", isPassed: true}, 
+            {name: "Liam", course: "Computer Science", isPassed: false}, 
+            {name: "Jenner", course: "Information Technology", isPassed: true}, 
+            {name: "Marco", course: "Robotics", isPassed: true}, 
+            {name: "Kimberly", course: "Artificial Intelligence", isPassed: false}, 
+            {name: "Jamie", course: "Big Data", isPassed: false}
+        ];
+        
+        console.log("=== All Students ===");
+        console.log(students);
+        
+        // Using filter() method to get students that passed
+        console.log("\n=== Students Who Passed (using filter) ===");
+        const passedStudents = students.filter(student => student.isPassed === true);
+        console.log(passedStudents);
+        
+        // Bonus: Chain filter() with forEach() to congratulate students
+        console.log("\n=== Bonus: Congratulations Messages (filter + forEach) ===");
+        students
+            .filter(student => student.isPassed)
+            .forEach(student => {
+                console.log(`Good job ${student.name}, you passed the course in ${student.course}`);
+            });
+        
+        // Additional statistics
+        console.log("\n=== Statistics ===");
+        const totalStudents = students.length;
+        const passedCount = passedStudents.length;
+        const failedCount = totalStudents - passedCount;
+        const passRate = ((passedCount / totalStudents) * 100).toFixed(1);
+        
+        console.log(`Total students: ${totalStudents}`);
+        console.log(`Students passed: ${passedCount}`);
+        console.log(`Students failed: ${failedCount}`);
+        console.log(`Pass rate: ${passRate}%`);
+        
+        // List of courses with pass/fail status
+        console.log("\n=== Course Results ===");
+        students.forEach(student => {
+            const status = student.isPassed ? "PASSED" : "FAILED";
+            console.log(`${student.name} - ${student.course}: ${status}`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP 2 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>🌟 Exercise 2: Colors #2</h1>
+    <p>Week 4 - Day 2</p>
+    
+    <script>
+        // Arrays provided
+        const colors = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+        const ordinal = ["th", "st", "nd", "rd"];
+        
+        // Function to get the correct ordinal suffix
+        function getOrdinalSuffix(number) {
+            // For numbers ending in 1, 2, 3 (but not 11, 12, 13)
+            if (number <= 3) {
+                return ordinal[number];
+            } else {
+                return ordinal[0]; // "th" for all other numbers
+            }
+        }
+        
+        // Display colors with proper ordinal numbering
+        console.log("=== Displaying Colors with Ordinals ===");
+        colors.forEach((color, index) => {
+            const number = index + 1;
+            const suffix = getOrdinalSuffix(number);
+            console.log(`${number}${suffix} choice is ${color}.`);
+        });
+        
+        // Alternative using ternary operator (more concise)
+        console.log("\n=== Alternative with Ternary Operator ===");
+        colors.forEach((color, index) => {
+            const number = index + 1;
+            const suffix = number <= 3 ? ordinal[number] : ordinal[0];
+            console.log(`${number}${suffix} choice is ${color}.`);
+        });
+    </script>
+</body>
+</html>

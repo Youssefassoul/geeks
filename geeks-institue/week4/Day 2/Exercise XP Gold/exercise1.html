@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP Gold 1 - Week 4 Day 2</title>
+</head>
+<body>
+    <h1>Exercise 1: Analyzing the map method</h1>
+    <p>Week 4 - Day 2 - Exercise XP Gold</p>
+    
+    <script>
+        console.log("=== Exercise 1: Analyzing the map method ===");
+        
+        // First, let's analyze what we expect
+        console.log("\n--- Code Analysis ---");
+        console.log("Code to analyze:");
+        console.log(`[1, 2, 3].map(num => {
+  if (typeof num === 'number') return num * 2;
+  return ;
+});`);
+        
+        console.log("\n--- Prediction ---");
+        console.log("Expected output: [2, 4, 6]");
+        console.log("Reasoning:");
+        console.log("- All elements (1, 2, 3) are numbers");
+        console.log("- typeof check will be true for all");
+        console.log("- Each number will be multiplied by 2");
+        console.log("- 1 * 2 = 2, 2 * 2 = 4, 3 * 2 = 6");
+        
+        // Now let's run the actual code
+        console.log("\n--- Actual Result ---");
+        const result = [1, 2, 3].map(num => {
+            if (typeof num === 'number') return num * 2;
+            return ;
+        });
+        
+        console.log("Actual output:", result);
+        
+        // Let's test with mixed types to see the difference
+        console.log("\n--- Testing with Mixed Types ---");
+        const mixedArray = [1, '2', 3, 'hello', true, null];
+        const mixedResult = mixedArray.map(num => {
+            console.log(`Processing: ${num} (type: ${typeof num})`);
+            if (typeof num === 'number') return num * 2;
+            return ;
+        });
+        
+        console.log("Mixed array result:", mixedResult);
+        
+        console.log("\n--- Explanation ---");
+        console.log("- When 'return ;' is used without a value, it returns 'undefined'");
+        console.log("- Only numeric values get doubled");
+        console.log("- Non-numeric values become 'undefined' in the result");
+    </script>
+</body>
+</html>
