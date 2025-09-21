@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const marioGame = {
+        detail: "An amazing game!",
+        characters: {
+          mario: {
+            description: "Small and jumpy. Likes princesses.",
+            height: 10,
+            weight: 3,
+            speed: 12,
+          },
+          bowser: {
+            description: "Big and green, Hates princesses.",
+            height: 16,
+            weight: 6,
+            speed: 4,
+          },
+          princessPeach: {
+            description: "Beautiful princess.",
+            height: 12,
+            weight: 2,
+            speed: 2,
+          },
+        },
+      };
+      // 1. Convert the JS object to a JSON string.
+      let jsonString = JSON.stringify(marioGame, null, 2);
+
+      // 2. What happens to nested objects?
+      // They are recursively converted into a string format as well.
+      // The structure is preserved.
+
+      // 3. Pretty print the JSON object.
+      // The `null, 2` arguments in JSON.stringify tell it to format the string
+      // with an indent of 2 spaces, making it "pretty".
+      console.log(jsonString);
+    </script>
+  </body>
+</html>

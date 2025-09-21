@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Quote Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex items-center justify-center min-h-screen bg-[#b09e99]">
+    <div class="bg-[#d9cfc9] p-12 w-[600px]">
+      <!-- Generate Button -->
+      <div class="flex justify-center">
+        <button
+          id="generateBtn"
+          class="bg-[#62b6cb] text-white font-semibold px-6 py-2 shadow-md border border-[#4d9bb0]"
+        >
+          Generate Quote
+        </button>
+      </div>
+
+      <!-- Quote Section -->
+      <div id="quoteSection" class="mt-6 text-center">
+        <p id="quoteText" class="text-gray-600 text-2xl">
+          <span class="text-5xl font-bold align-middle">❝</span>
+          Click the button to generate a quote!
+        </p>
+        <p id="quoteAuthor" class="mt-3 text-[#62b6cb] font-medium text-lg">
+          —
+        </p>
+        <p id="quoteLikes" class="mt-1 text-sm text-gray-500">Likes: 0</p>
+      </div>
+
+      <!-- Extra Buttons -->
+      <div class="flex justify-center gap-3 mt-6 flex-wrap">
+        <button id="btnCharsWith" class="px-3 py-1 bg-gray-300">
+          Chars (with spaces)
+        </button>
+        <button id="btnCharsWithout" class="px-3 py-1 bg-gray-300">
+          Chars (no spaces)
+        </button>
+        <button id="btnWords" class="px-3 py-1 bg-gray-300">Word Count</button>
+        <button id="btnLike" class="px-3 py-1 bg-pink-400 text-white">
+          ❤️ Like
+        </button>
+      </div>
+
+      <!-- Add Quote Form -->
+      <div class="mt-8">
+        <h2 class="font-bold mb-2">Add a new Quote</h2>
+        <input
+          id="newQuote"
+          type="text"
+          placeholder="Enter quote"
+          class="w-full mb-2 p-2 border"
+        />
+        <input
+          id="newAuthor"
+          type="text"
+          placeholder="Enter author"
+          class="w-full mb-2 p-2 border"
+        />
+        <button id="addQuoteBtn" class="bg-green-500 text-white px-4 py-2">
+          Add Quote
+        </button>
+      </div>
+
+      <!-- Filter by Author -->
+      <div class="mt-8">
+        <h2 class="font-bold mb-2">Filter by Author</h2>
+        <input
+          id="filterAuthor"
+          type="text"
+          placeholder="Enter author name"
+          class="w-full mb-2 p-2 border"
+        />
+        <button id="filterBtn" class="bg-blue-500 text-white px-4 py-2">
+          Filter
+        </button>
+
+        <div class="flex justify-center gap-3 mt-3">
+          <button id="prevBtn" class="px-3 py-1 bg-gray-400">Previous</button>
+          <button id="nextBtn" class="px-3 py-1 bg-gray-400">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ✅ Initial Quotes Array
+      let quotes = [
+        {
+          id: 0,
+          author: "Charles Lindbergh",
+          quote:
+            "Life is like a landscape. You live in the midst of it but can describe it only from the vantage point of distance.",
+          likes: 0,
+        },
+        {
+          id: 1,
+          author: "Albert Einstein",
+          quote: "Imagination is more important than knowledge.",
+          likes: 0,
+        },
+        {
+          id: 2,
+          author: "Confucius",
+          quote:
+            "It does not matter how slowly you go as long as you do not stop.",
+          likes: 0,
+        },
+        {
+          id: 3,
+          author: "Walt Disney",
+          quote: "The way to get started is to quit talking and begin doing.",
+          likes: 0,
+        },
+        {
+          id: 4,
+          author: "Nelson Mandela",
+          quote:
+            "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+          likes: 0,
+        },
+      ];
+
+      let lastIndex = -1;
+      let currentQuote = null;
+
+      // ✅ Display Quote Function
+      const displayQuote = (q) => {
+        document.getElementById(
+          "quoteText"
+        ).innerHTML = `<span class="text-5xl font-bold align-middle">❝</span> ${q.quote}`;
+        document.getElementById("quoteAuthor").textContent = q.author;
+        document.getElementById("quoteLikes").textContent = `Likes: ${q.likes}`;
+        currentQuote = q;
+      };
+
+      // ✅ Generate Random Quote
+      const generateQuote = () => {
+        let index;
+        do {
+          index = Math.floor(Math.random() * quotes.length);
+        } while (index === lastIndex);
+        lastIndex = index;
+        displayQuote(quotes[index]);
+      };
+
+      document
+        .getElementById("generateBtn")
+        .addEventListener("click", generateQuote);
+
+      // ✅ Extra Buttons
+      document.getElementById("btnCharsWith").addEventListener("click", () => {
+        alert(`Characters (with spaces): ${currentQuote.quote.length}`);
+      });
+
+      document
+        .getElementById("btnCharsWithout")
+        .addEventListener("click", () => {
+          const count = currentQuote.quote
+            .split("")
+            .filter((c) => c !== " ").length;
+          alert(`Characters (no spaces): ${count}`);
+        });
+
+      document.getElementById("btnWords").addEventListener("click", () => {
+        const count = currentQuote.quote
+          .split(" ")
+          .filter((w) => w !== "").length;
+        alert(`Words: ${count}`);
+      });
+
+      document.getElementById("btnLike").addEventListener("click", () => {
+        currentQuote.likes++;
+        document.getElementById(
+          "quoteLikes"
+        ).textContent = `Likes: ${currentQuote.likes}`;
+      });
+
+      // ✅ Add New Quote
+      document.getElementById("addQuoteBtn").addEventListener("click", () => {
+        const text = document.getElementById("newQuote").value.trim();
+        const author = document.getElementById("newAuthor").value.trim();
+        if (text && author) {
+          const newId = quotes.length;
+          quotes.push({ id: newId, author, quote: text, likes: 0 });
+          alert("Quote added!");
+        } else {
+          alert("Please enter both quote and author.");
+        }
+      });
+
+      // ✅ Filter by Author
+      let filteredQuotes = [];
+      let filterIndex = 0;
+
+      document.getElementById("filterBtn").addEventListener("click", () => {
+        const name = document.getElementById("filterAuthor").value.trim();
+        filteredQuotes = quotes.filter(
+          (q) => q.author.toLowerCase() === name.toLowerCase()
+        );
+        filterIndex = 0;
+        filteredQuotes.length > 0
+          ? displayQuote(filteredQuotes[0])
+          : alert("No quotes found for this author.");
+      });
+
+      // ✅ Next & Previous
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        if (filteredQuotes.length > 0) {
+          filterIndex = (filterIndex + 1) % filteredQuotes.length;
+          displayQuote(filteredQuotes[filterIndex]);
+        }
+      });
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        if (filteredQuotes.length > 0) {
+          filterIndex =
+            (filterIndex - 1 + filteredQuotes.length) % filteredQuotes.length;
+          displayQuote(filteredQuotes[filterIndex]);
+        }
+      });
+    </script>
+  </body>
+</html>
