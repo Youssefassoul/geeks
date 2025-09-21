@@ -1,0 +1,93 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #4b0082
+    url("/geeks-institue/week4/day5/Robo_Friends/images/circuit-pattern.png")
+    repeat;
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* Header */
+
+h1 {
+  font-family: "SEGA LOGO FONT", sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: rgb(48, 57, 82);
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(106, 223, 130)
+    url("/geeks-institue/week4/day5/Robo_Friends/images/card-pattern.png")
+    repeat;
+  padding: 20px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+#searchBox {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  margin-left: 150px;
+  padding: 10px 20px;
+  border: solid 2px;
+  border-color: #6757cb;
+  border-radius: 3px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+/* Robots Container */
+#robotsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* Robot Card */
+.card {
+  background: #46c2cb
+    url("/geeks-institue/week4/day5/Robo_Friends/images/card-pattern.png")
+    repeat;
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 50%;
+  background: #0d0d2b;
+  padding: 10px;
+}
+
+.card h2 {
+  margin: 15px 0 5px;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #111;
+}
