@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const promise1 = Promise.resolve(3);
+      const promise2 = 42;
+      const promise3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 3000, "foo");
+      });
+
+      Promise.all([promise1, promise2, promise3]).then((values) => {
+        console.log(values);
+      });
+    </script>
+  </body>
+</html>
