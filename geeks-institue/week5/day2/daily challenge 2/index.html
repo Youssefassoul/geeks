@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sunrise Comparison</title>
+  </head>
+  <body>
+    <h1>Sunrise Times</h1>
+
+    <form id="cityForm">
+      <h3>City 1</h3>
+      <label>Latitude: <input type="text" id="lat1" value="48.864716" /></label
+      ><br />
+      <label>Longitude: <input type="text" id="lng1" value="2.349014" /></label
+      ><br /><br />
+
+      <h3>City 2</h3>
+      <label>Latitude: <input type="text" id="lat2" value="40.730610" /></label
+      ><br />
+      <label
+        >Longitude: <input type="text" id="lng2" value="-73.935242" /></label
+      ><br /><br />
+
+      <button type="submit">Get Sunrise Times</button>
+    </form>
+
+    <h2>Results:</h2>
+    <div id="results"></div>
+
+    <script>
+      const form = document.getElementById("cityForm");
+      const results = document.getElementById("results");
+
+      // Function to fetch sunrise time
+      function getSunrise(lat, lng) {
+        return fetch(
+          `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`
+        )
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed request");
+            return res.json();
+          })
+          .then((data) => data.results.sunrise);
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // prevent page reload
+
+        const lat1 = document.getElementById("lat1").value;
+        const lng1 = document.getElementById("lng1").value;
+        const lat2 = document.getElementById("lat2").value;
+        const lng2 = document.getElementById("lng2").value;
+
+        try {
+          // Promise.all waits for BOTH requests
+          const [sunrise1, sunrise2] = await Promise.all([
+            getSunrise(lat1, lng1),
+            getSunrise(lat2, lng2),
+          ]);
+
+          results.innerHTML = `
+          <p><strong>City 1 Sunrise:</strong> ${new Date(
+            sunrise1
+          ).toLocaleTimeString()}</p>
+          <p><strong>City 2 Sunrise:</strong> ${new Date(
+            sunrise2
+          ).toLocaleTimeString()}</p>
+        `;
+        } catch (error) {
+          results.innerHTML = `<p style="color:red">Error: ${error.message}</p>`;
+        }
+      });
+    </script>
+  </body>
+</html>

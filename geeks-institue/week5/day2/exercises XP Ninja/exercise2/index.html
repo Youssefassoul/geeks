@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let resolveAfter2Seconds = function () {
+        console.log("starting slow promise");
+        return new Promise((resolve) => {
+          setTimeout(function () {
+            resolve("slow");
+            console.log("slow promise is done");
+          }, 2000);
+        });
+      };
+
+      let resolveAfter1Second = function () {
+        console.log("starting fast promise");
+        return new Promise((resolve) => {
+          setTimeout(function () {
+            resolve("fast");
+            console.log("fast promise is done");
+          }, 1000);
+        });
+      };
+
+      //The Promise.all() method returns a single Promise that fulfills when all of the promises passed as an iterable have been fulfilled.
+
+      let concurrentPromise = function () {
+        console.log("==CONCURRENT START with Promise.all==");
+        return Promise.all([
+          resolveAfter2Seconds(),
+          resolveAfter1Second(),
+        ]).then((messages) => {
+          console.log(messages[0]);
+          console.log(messages[1]);
+        });
+      };
+
+      setTimeout(concurrentPromise, 1000);
+
+      // After ~1s (from setTimeout):
+      // ==CONCURRENT START with Promise.all==
+      // starting slow promise
+      // starting fast promise
+      // ~1s later (t ≈ 2s): fast promise is done
+      // ~1s later (t ≈ 3s): slow promise is done
+      // Then the Promise.all .then() runs and logs:
+      // slow
+      // fast
+      // Total time to completion ≈ 3s from page load (1s delay + 2s slow).
+    </script>
+  </body>
+</html>

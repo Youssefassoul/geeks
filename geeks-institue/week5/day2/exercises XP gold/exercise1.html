@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giphy API Example</title>
+  </head>
+  <body>
+    <h1>Random GIF from Giphy</h1>
+    <button id="getGif">Get GIF</button>
+    <div id="gifContainer"></div>
+
+    <script>
+      const API_KEY = "QFFuKtLseChkJWsSWbY8dsCqjIlcnRfL"; // Replace with your Giphy API key
+      const gifContainer = document.getElementById("gifContainer");
+      const button = document.getElementById("getGif");
+
+      button.addEventListener("click", async () => {
+        try {
+          const response = await fetch(
+            `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=&rating=g`
+          );
+
+          // Check if response is OK
+          if (!response.ok) {
+            throw new Error(
+              "Network response was not ok " + response.statusText
+            );
+          }
+
+          const data = await response.json();
+
+          // Get GIF URL
+          const gifUrl = data.data.images.original.url;
+
+          // Create image element
+          const img = document.createElement("img");
+          img.src = gifUrl;
+          img.alt = "Random GIF";
+
+          // Clear old GIF and show new one
+          gifContainer.innerHTML = "";
+          gifContainer.appendChild(img);
+        } catch (error) {
+          console.error("Error fetching the GIF:", error);
+          gifContainer.innerHTML = `<p>Failed to load GIF 😢</p>`;
+        }
+      });
+    </script>
+  </body>
+</html>

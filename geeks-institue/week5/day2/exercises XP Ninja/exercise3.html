@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let resolveAfter2Seconds = function () {
+        console.log("starting slow promise");
+        return new Promise((resolve) => {
+          setTimeout(function () {
+            resolve("slow");
+            console.log("slow promise is done");
+          }, 2000);
+        });
+      };
+
+      let resolveAfter1Second = function () {
+        console.log("starting fast promise");
+        return new Promise((resolve) => {
+          setTimeout(function () {
+            resolve("fast");
+            console.log("fast promise is done");
+          }, 1000);
+        });
+      };
+
+      let parallel = async function () {
+        console.log("==PARALLEL with await Promise.all==");
+        // Start 2 "jobs" in parallel and wait for both of them to complete
+        await Promise.all([
+          (async () => console.log(await resolveAfter2Seconds()))(),
+          (async () => console.log(await resolveAfter1Second()))(),
+        ]);
+      };
+
+      setTimeout(parallel, 5000);
+
+      // After ~5s delay:
+      // ==PARALLEL with await Promise.all==
+      // starting slow promise
+      // starting fast promise
+      // ~1s later (t ≈ 6s):
+      // fast promise is done
+      // fast
+      // ~1s later (t ≈ 7s):
+      // slow promise is done
+      // slow
+      // Both start together; each IIFE logs its own result as it resolves. Total time ≈ 7s from page load (5s delay + 2s slow).
+    </script>
+  </body>
+</html>
