@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Pokédex</title>
+</head>
+
+<body>
+
+	<audio id="myAudio" autoplay="true" loop="true" preload="true">
+		<source src="https://www.cjoint.com/doc/18_09/HIkpnJ4y0Fw_generique-francais-de-la-saison-1-de-pokemon.mp3"
+			type="audio/mp3">
+	</audio>
+
+	<div class="logo-container">
+		<!-- Block parent element -->
+		<img id="pokemon_Logo" src="images/logo.png">
+	</div>
+
+	<div class="instructions">
+		<h2>How to use:</h2>
+		<p><b>1-</b> Press the <b>green</b> button to get a random Pokémon</p>
+		<p><b>2-</b> Press the <b>left</b> and <b>right</b> buttons to see previous and next Pokémon.</p>
+	</div>
+
+	<div class="img-container">
+		<!-- Block parent element -->
+		<img class="pokedex-img" src="images/pokedex.png" width="880" height="610">
+	</div>
+
+	<button id="find_button" onclick="getData()"></button>
+
+	<!-- left panel left and right buttons -->
+	<div class="button-left-right">
+
+		<button id="previous" class="cross-square square-center-left" onclick="prevData()"></button>
+
+		<button id="next" class="cross-square square-center-right" onclick="nextData()"></button>
+
+	</div>
+
+	<img id="pokemon_Image" hidden="true">
+
+	<div id="box">
+
+		<img id="loadingImage" src="http://www.complicite.org/_images/loading.gif" hidden="true">
+		<h1 id="name"> </h1>
+		<p id="id"></p>
+		<p id="height"> </p>
+		<p id="weight"> </p>
+		<p id=""> </p>
+		<p id="type"> </p>
+		<p id="load"> </p>
+
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>

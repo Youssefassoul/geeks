@@ -1,0 +1,28 @@
+.background {
+  background-repeat: no-repeat;
+  background-image: url("/daily challenge/images/alexander-grey-8lnbXtxFGZw-unsplash.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      60% 60% at 50% 30%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 60%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
+}
+
+/* Ensure dropdown options are readable across browsers */
+.currency-select {
+  color: #ffffff;
+}
+.currency-select option {
+  color: #111111; /* dark text when the menu is open */
+  background: #ffffff; /* white option background */
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body class="text-white">
+    <div class="background min-h-screen flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-black/50 via-black/20 to-white/10"></div>
+
+        <div class="relative container max-w-lg mx-auto w-full p-6 md:p-8 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl flex flex-col gap-5">
+            <div class="flex items-center justify-between">
+                <h1 class="text-3xl md:text-4xl font-semibold tracking-tight">Currency Converter</h1>
+                <span class="text-white/70 text-sm">ExchangeRate-API</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <label class="flex flex-col gap-2">
+                    <span class="text-sm text-white/80">From</span>
+                    <select id="from" class="currency-select appearance-none px-4 py-3 rounded-xl bg-white/20 text-white border border-white/20 focus:border-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 transition">
+                        <option value="USD">USD</option>
+                        <option value="EUR" selected>EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="INR">INR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="KRW">KRW</option>
+                        <option value="CNY">CNY</option>
+                    </select>
+                </label>
+                <label class="flex flex-col gap-2">
+                    <span class="text-sm text-white/80">To</span>
+                    <select id="to" class="currency-select appearance-none px-4 py-3 rounded-xl bg-white/20 text-white border border-white/20 focus:border-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 transition">
+                        <option value="USD" selected>USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="INR">INR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="KRW">KRW</option>
+                        <option value="CNY">CNY</option>
+                    </select>
+                </label>
+            </div>
+
+            <label class="flex flex-col gap-2">
+                <span class="text-sm text-white/80">Amount (optional)</span>
+                <input type="number" id="amount" placeholder="e.g. 125.50" step="any" min="0" class="px-4 py-3 rounded-xl bg-white/20 placeholder-white/50 text-white border border-white/20 focus:border-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 transition">
+            </label>
+
+            <button id="convert" class="mt-2 inline-flex justify-center items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 active:from-indigo-600 active:to-purple-600 transition text-white font-medium shadow-lg">
+                Convert
+            </button>
+
+            <div id="status" class="text-sm text-white/80"></div>
+            <div id="result" class="text-2xl font-semibold"></div>
+        </div>
+    </div>
+    <script>
+const apiKey = "c04b33e4b6060e401e9b3bfd"; // replace with your key if needed
+
+function setStatus(message) {
+    const el = document.getElementById("status");
+    el.innerText = message || "";
+}
+
+function formatNumber(n) {
+    return Number(n).toLocaleString(undefined, { maximumFractionDigits: 6 });
+}
+
+async function fetchPair(fromCurrency, toCurrency, amountValue) {
+    let url = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/${fromCurrency}/${toCurrency}`;
+    if (amountValue !== undefined && amountValue !== null && amountValue !== "") {
+        const parsed = parseFloat(amountValue);
+        if (!Number.isNaN(parsed)) {
+            url += `/${parsed}`;
+        }
+    }
+
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.result !== "success") {
+        const type = data["error-type"] || "unknown-error";
+        throw new Error(type);
+    }
+    return data;
+}
+
+document.getElementById("convert").addEventListener("click", async () => {
+    const fromCurrency = document.getElementById("from").value;
+    const toCurrency = document.getElementById("to").value;
+    const amountValue = document.getElementById("amount").value.trim();
+
+    document.getElementById("result").innerText = "";
+    setStatus("Converting...");
+    try {
+        const data = await fetchPair(fromCurrency, toCurrency, amountValue);
+        const rate = data.conversion_rate;
+        if (amountValue !== "") {
+            const converted = data.conversion_result;
+            document.getElementById("result").innerText = `${formatNumber(amountValue)} ${fromCurrency} = ${formatNumber(converted)} ${toCurrency} (rate: ${formatNumber(rate)})`;
+        } else {
+            document.getElementById("result").innerText = `1 ${fromCurrency} = ${formatNumber(rate)} ${toCurrency}`;
+        }
+        setStatus("");
+    } catch (err) {
+        const map = {
+            "unsupported-code": "Unsupported currency code.",
+            "malformed-request": "Malformed request. Check inputs.",
+            "invalid-key": "Invalid API key.",
+            "inactive-account": "Inactive account. Confirm your email.",
+            "quota-reached": "Quota reached for your plan.",
+            "unknown-error": "Unknown error."
+        };
+        setStatus(map[err.message] || `Error: ${err.message}`);
+    }
+});
+    </script>
+</body>
+</html>

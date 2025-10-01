@@ -1,0 +1,78 @@
+#logo {
+    font-family: 'Star Wars', sans-serif;
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: black;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    margin-top: 80px ;
+    margin-bottom: 40px;
+    
+  }
+
+  
+  canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    
+  }
+
+  #controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+  }
+  #info {
+    border: 1px solid yellow;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+    min-height: 150px;
+  }
+  #findsomeone {
+    border: 1px solid rgb(236, 233, 40);
+    background: rgb(254, 254, 254);
+    color: rgb(6, 5, 5);
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  #findsomeone:hover {
+    background: rgb(254, 254, 254);
+    border: 2px solid yellow;
+    border-radius: 10px;
+    color: black;
+  }
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    color: yellow;
+    font-family: Arial, sans-serif;
+  }
+
+  #container {
+    position: relative;
+    z-index: 1; /* above canvas */
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    padding: 20px;
+    margin: 0 auto;
+  }
