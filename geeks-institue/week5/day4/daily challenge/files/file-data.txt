@@ -1,0 +1,5 @@
+This is a sample file for the daily challenge.
+You can add your data here for processing.
+Line 1: Example data entry
+Line 2: Another example entry
+Line 3: Yet another entry

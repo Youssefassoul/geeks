@@ -1,0 +1,6 @@
+This is an example file for exercise 1.
+
+Line 1: Hello, world!
+Line 2: Welcome to Geeks Institute.
+Line 3: Practice makes perfect.
+Line 4: Good luck with your exercises!
