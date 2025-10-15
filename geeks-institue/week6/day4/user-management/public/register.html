@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Register - User Management</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="firstName"
+                        >First Name <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="Enter your first name"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName"
+                        >Last Name <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Enter your last name"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="email"
+                        >Email <span class="required">*</span></label
+                    >
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="username"
+                        >Username <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="password"
+                        >Password <span class="required">*</span></label
+                    >
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Choose a password"
+                        required
+                        minlength="6"
+                    />
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn" disabled>
+                    Register
+                </button>
+            </form>
+
+            <div id="message" class="message"></div>
+
+            <div class="link-text">
+                Already have an account? <a href="/login">Login here</a>
+            </div>
+        </div>
+
+        <script>
+            const form = document.getElementById("registerForm");
+            const submitBtn = document.getElementById("submitBtn");
+            const messageDiv = document.getElementById("message");
+            const inputs = form.querySelectorAll("input[required]");
+
+            // Function to check if all required fields are filled
+            function checkFormValidity() {
+                let allFilled = true;
+                inputs.forEach((input) => {
+                    if (!input.value.trim() || !input.validity.valid) {
+                        allFilled = false;
+                    }
+                });
+                submitBtn.disabled = !allFilled;
+            }
+
+            // Add event listeners to all inputs
+            inputs.forEach((input) => {
+                input.addEventListener("input", checkFormValidity);
+                input.addEventListener("blur", checkFormValidity);
+            });
+
+            // Show message function
+            function showMessage(text, type) {
+                messageDiv.textContent = text;
+                messageDiv.className = `message ${type} show`;
+            }
+
+            // Hide message function
+            function hideMessage() {
+                messageDiv.className = "message";
+            }
+
+            // Handle form submission
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    firstName: document
+                        .getElementById("firstName")
+                        .value.trim(),
+                    lastName: document.getElementById("lastName").value.trim(),
+                    email: document.getElementById("email").value.trim(),
+                    username: document.getElementById("username").value.trim(),
+                    password: document.getElementById("password").value,
+                };
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Registering...";
+
+                try {
+                    const response = await fetch("/api/register", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        showMessage(data.message, "success");
+                        form.reset();
+
+                        // Redirect to login after 2 seconds
+                        setTimeout(() => {
+                            window.location.href = "/login";
+                        }, 2000);
+                    } else {
+                        showMessage(data.message, "error");
+                        submitBtn.disabled = false;
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    showMessage(
+                        "An error occurred. Please try again.",
+                        "error",
+                    );
+                    submitBtn.disabled = false;
+                } finally {
+                    submitBtn.textContent = "Register";
+                    checkFormValidity();
+                }
+            });
+
+            // Initial check
+            checkFormValidity();
+        </script>
+    </body>
+</html>

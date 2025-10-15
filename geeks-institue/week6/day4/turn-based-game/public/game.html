@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Strategy Game - Play</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="game-container">
+            <div class="game-header">
+                <h1>🎮 Strategy Game</h1>
+                <button id="leave-game-btn" class="btn btn-danger btn-sm">
+                    Leave Game
+                </button>
+            </div>
+
+            <div class="game-info">
+                <div class="player-info" id="player1-info">
+                    <div
+                        class="player-indicator"
+                        style="background-color: #3b82f6"
+                    ></div>
+                    <span class="player-name">Player 1</span>
+                </div>
+
+                <div class="turn-indicator" id="turn-indicator">
+                    Waiting for player 2...
+                </div>
+
+                <div class="player-info" id="player2-info">
+                    <div
+                        class="player-indicator"
+                        style="background-color: #ef4444"
+                    ></div>
+                    <span class="player-name">Player 2</span>
+                </div>
+            </div>
+
+            <div class="game-board" id="game-board">
+                <!-- Grid will be generated here -->
+            </div>
+
+            <div class="controls">
+                <div class="movement-controls">
+                    <button class="btn btn-move" id="move-up">↑</button>
+                    <div class="horizontal-controls">
+                        <button class="btn btn-move" id="move-left">←</button>
+                        <button class="btn btn-move" id="move-down">↓</button>
+                        <button class="btn btn-move" id="move-right">→</button>
+                    </div>
+                </div>
+                <button class="btn btn-attack" id="attack-btn">
+                    ⚔️ Attack Base
+                </button>
+            </div>
+
+            <div class="game-status" id="game-status"></div>
+
+            <div class="legend">
+                <h3>Legend</h3>
+                <div class="legend-item">
+                    <div
+                        class="legend-color"
+                        style="background-color: #3b82f6"
+                    ></div>
+                    <span>Player 1</span>
+                </div>
+                <div class="legend-item">
+                    <div
+                        class="legend-color"
+                        style="background-color: #ef4444"
+                    ></div>
+                    <span>Player 2</span>
+                </div>
+                <div class="legend-item">
+                    <div
+                        class="legend-color"
+                        style="background-color: #6b7280"
+                    ></div>
+                    <span>Obstacle</span>
+                </div>
+                <div class="legend-item">
+                    <div
+                        class="legend-color"
+                        style="background-color: #fbbf24"
+                    ></div>
+                    <span>Base</span>
+                </div>
+            </div>
+        </div>
+
+        <script src="game.js"></script>
+    </body>
+</html>

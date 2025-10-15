@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login - User Management</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username"
+                        >Username <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="password"
+                        >Password <span class="required">*</span></label
+                    >
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    />
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn" disabled>
+                    Login
+                </button>
+            </form>
+
+            <div id="message" class="message"></div>
+
+            <div class="link-text">
+                Don't have an account? <a href="/register">Register here</a>
+            </div>
+        </div>
+
+        <script>
+            const form = document.getElementById("loginForm");
+            const submitBtn = document.getElementById("submitBtn");
+            const messageDiv = document.getElementById("message");
+            const inputs = form.querySelectorAll("input[required]");
+
+            // Function to check if all required fields are filled
+            function checkFormValidity() {
+                let allFilled = true;
+                inputs.forEach((input) => {
+                    if (!input.value.trim()) {
+                        allFilled = false;
+                    }
+                });
+                submitBtn.disabled = !allFilled;
+            }
+
+            // Add event listeners to all inputs
+            inputs.forEach((input) => {
+                input.addEventListener("input", checkFormValidity);
+                input.addEventListener("blur", checkFormValidity);
+            });
+
+            // Show message function
+            function showMessage(text, type) {
+                messageDiv.textContent = text;
+                messageDiv.className = `message ${type} show`;
+            }
+
+            // Hide message function
+            function hideMessage() {
+                messageDiv.className = "message";
+            }
+
+            // Handle form submission
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    username: document.getElementById("username").value.trim(),
+                    password: document.getElementById("password").value,
+                };
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Logging in...";
+
+                try {
+                    const response = await fetch("/api/login", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        showMessage(data.message, "success");
+                        form.reset();
+
+                        // In a real application, you would store the session/token
+                        // and redirect to a dashboard or home page
+                        setTimeout(() => {
+                            // Redirect to a success page or dashboard
+                            showMessage(
+                                "Login successful! Welcome back.",
+                                "success",
+                            );
+                        }, 1500);
+                    } else {
+                        showMessage(data.message, "error");
+                        submitBtn.disabled = false;
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    showMessage(
+                        "An error occurred. Please try again.",
+                        "error",
+                    );
+                    submitBtn.disabled = false;
+                } finally {
+                    submitBtn.textContent = "Login";
+                    checkFormValidity();
+                }
+            });
+
+            // Initial check
+            checkFormValidity();
+        </script>
+    </body>
+</html>
