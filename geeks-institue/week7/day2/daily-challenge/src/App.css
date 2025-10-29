@@ -1,0 +1,12 @@
+body {
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: green;
+  font-weight: bold;
+}
