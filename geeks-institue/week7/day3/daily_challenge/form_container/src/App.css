@@ -1,0 +1,13 @@
+body {
+  background-color: #f2f6f8;
+}
+
+form {
+  font-size: 15px;
+}
+
+h2 {
+  color: #0d6efd;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

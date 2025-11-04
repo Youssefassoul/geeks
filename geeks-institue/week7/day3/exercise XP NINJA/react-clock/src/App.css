@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1a1d2e;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+.clock-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(135deg, #1a1d2e 0%, #252a42 100%);
+}
+
+.year-display {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  font-size: 56px;
+  font-weight: 700;
+  color: #ffffff;
+  z-index: 100;
+  letter-spacing: -1px;
+}
+
+.year-label {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 8px;
+}
+
+.month-display {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  font-size: 56px;
+  font-weight: 700;
+  color: #ffffff;
+  z-index: 100;
+}
+
+.clock-spiral {
+  width: 900px;
+  height: 900px;
+  position: relative;
+}
+
+.spiral-element {
+  position: absolute;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.25);
+  white-space: nowrap;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* Different colors for different time units */
+.spiral-element.second {
+  color: rgba(251, 191, 36, 0.4);
+  font-size: 10px;
+}
+
+.spiral-element.minute {
+  color: rgba(134, 239, 172, 0.4);
+  font-size: 10px;
+}
+
+.spiral-element.hour {
+  color: rgba(96, 165, 250, 0.4);
+  font-size: 11px;
+}
+
+.spiral-element.day {
+  color: rgba(196, 181, 253, 0.4);
+  font-size: 11px;
+}
+
+.spiral-element.week {
+  color: rgba(251, 146, 60, 0.4);
+  font-size: 12px;
+}
+
+.spiral-element.month {
+  color: rgba(244, 114, 182, 0.4);
+  font-size: 12px;
+}
+
+/* Highlight current values */
+.spiral-element.current {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 13px !important;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.spiral-element.current.second {
+  color: #fbbf24 !important;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+}
+
+.spiral-element.current.minute {
+  color: #86efac !important;
+  text-shadow: 0 0 15px rgba(134, 239, 172, 0.8);
+}
+
+.spiral-element.current.hour {
+  color: #60a5fa !important;
+  text-shadow: 0 0 15px rgba(96, 165, 250, 0.8);
+}
+
+.spiral-element.current.day {
+  color: #c4b5fd !important;
+  text-shadow: 0 0 15px rgba(196, 181, 253, 0.8);
+}
+
+/* Center card */
+.center-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  background: rgba(30, 35, 55, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 60px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+.card-line {
+  font-size: 20px;
+  color: #9ca3af;
+  text-align: center;
+  margin: 8px 0;
+  font-weight: 400;
+}
+
+.card-line.main {
+  font-size: 36px;
+  color: #ffffff;
+  font-weight: 700;
+  margin: 15px 0;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .clock-spiral {
+    width: 600px;
+    height: 600px;
+  }
+  
+  .year-display,
+  .month-display {
+    font-size: 36px;
+  }
+  
+  .center-card {
+    padding: 30px 40px;
+  }
+  
+  .card-line.main {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clock-spiral {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .year-display {
+    top: 20px;
+    left: 20px;
+    font-size: 28px;
+  }
+  
+  .month-display {
+    bottom: 20px;
+    right: 20px;
+    font-size: 28px;
+  }
+  
+  .center-card {
+    padding: 20px 30px;
+  }
+  
+  .card-line {
+    font-size: 14px;
+  }
+  
+  .card-line.main {
+    font-size: 20px;
+  }
+}
